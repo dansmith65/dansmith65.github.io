@@ -7,7 +7,7 @@
 
 # Site settings
 title: Daniel Smith
-email: dansmith65@gmail.com
+email: dan@dansmith65.com
 description: > # this means to ignore newlines until "baseurl:"
   My personal website.
 baseurl: "" # the subpath of your site, e.g. /blog
