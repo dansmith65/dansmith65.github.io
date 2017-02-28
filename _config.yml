@@ -16,6 +16,12 @@ twitter_username: dansmith65
 github_username:  dansmith65
 safe: true
 timezone: America/Phoenix
+
+# Build settings
+markdown: kramdown
+theme: minima
+gems:
+  - jekyll-feed
 exclude:
   - README.md
   - CNAME
@@ -23,16 +29,15 @@ exclude:
   - Gemfile.lock
   - LICENSE
 
-# Build settings
-markdown: kramdown
-
+# NOTE: this feature was disabled when updating to Jekyll 3.3
+#       consider enabling it again once the new theme is worked out
 # Compress HTML settings
 # http://jch.penibelst.de/
-compress_html:
-  clippings: all
-  comments:  all
-  endings:   all
-  profile: false
+# compress_html:
+#   clippings: all
+#   comments:  all
+#   endings:   all
+#   profile: false
 
 # Compress CSS
 # https://jekyllrb.com/docs/assets/
