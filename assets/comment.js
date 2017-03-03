@@ -9,6 +9,7 @@ function submit_comment(commentForm){
 	var notice = commentForm.getElementsByClassName("notice");
 	notice = notice[0];
 	var data = serialize(commentForm);
+	console.log(data);
 	
 	/* Submit Form Using Ajax */
 	var http = new XMLHttpRequest();
@@ -36,7 +37,6 @@ function submit_comment(commentForm){
 	};
 
 	http.send(data);
-	
 	return false;
 }
 
@@ -54,6 +54,8 @@ function serialize(form) {
 		switch (form.elements[i].nodeName) {
 		case 'INPUT':
 			switch (form.elements[i].type) {
+			case 'email':
+			case 'url':
 			case 'text':
 			case 'hidden':
 			case 'password':
