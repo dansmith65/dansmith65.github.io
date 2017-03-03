@@ -1,0 +1,150 @@
+date: 1488474604
+name: Daniel Smith
+email: 446a71bcba0ed38a72850aea2a4b11ce
+url: http://dansmith65.com
+message: |
+    These are some of the more common markdown formatting options you may want to use in your comments:
+
+    ---
+
+    <small>type:</small>
+    ```
+    `Inline code` with backticks
+    ```
+    <small>to get:</small>
+
+    `Inline code` with backticks
+
+    ---
+
+    <small>type:</small>
+
+        ```
+        \\ code block version 1
+        "preceed/follow with 3 backticks"
+        ```
+        
+            \\ code block version 2
+            "indent all code with 4 spaces"
+
+    <small>to get:</small>
+
+    ```
+    \\ code block version 1
+    "preceed/follow with 3 backticks"
+    ```
+
+        \\ code block version 2
+        "indent all code with 4 spaces"
+
+    ---
+
+    <small>type:</small>
+    ```
+    *Italic* or _Italic_
+    ```
+    <small>to get:</small>
+
+    *Italic*
+
+    ---
+
+    <small>type:</small>
+    ```
+    **Bold** or __Bold__
+    ```
+    <small>to get:</small>
+
+    **Bold**
+
+    ---
+
+    <small>type:</small>
+    ```
+    [Link](http://dansmith65.com)
+    ```
+    <small>to get:</small>
+
+    [Link](http://dansmith65.com)
+
+    ---
+
+    <small>type:</small>
+    ```
+    ![Link](http://lorempixel.com/150/100/)
+    ```
+    <small>to get:</small>
+
+    ![Link](http://lorempixel.com/150/100/)
+
+    ---
+
+    <small>type:</small>
+    ```
+    > Blockquote
+    ```
+    <small>to get:</small>
+
+    > Blockquote
+
+    ---
+
+    <small>type:</small>
+    ```
+    * unordered
+    * list
+      * with
+      * sub-list
+    ```
+    <small>to get:</small>
+
+    * unordered
+    * list
+      * with
+      * sub-list
+
+    ---
+
+    <small>type:</small>
+    ```
+    1. ordered
+    2. list
+       1. with
+       2. sub-list
+    2. the exact number used
+    2. doesn't matter
+    2. as long as it's a number
+    ```
+    <small>to get:</small>
+
+    1. ordered
+    2. list
+       1. with
+       2. sub-list
+    2. the exact number used
+    2. doesn't matter
+    2. as long as it's a number
+
+    ---
+
+    <small>type:</small>
+    ```
+    Single line breaks
+    have no effect.
+        
+    Add a new line for a paragraph.
+        
+    If you want to enforce a line break,\\
+    you need to use two backslashes.
+    ```
+    <small>to get:</small>
+
+    Single line breaks
+    have no effect.
+        
+    Add a new line for a paragraph.
+        
+    If you want to enforce a line break,\\
+    you need to use two backslashes.
+
+    ---

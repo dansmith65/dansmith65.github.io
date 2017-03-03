@@ -1,0 +1,14 @@
+---
+layout: page
+title: Blog
+---
+
+<ul class="post-list">
+{% for post in site.posts %}
+  <li>
+	<h2><a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
+	<time class="post-meta" pubdate datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: site.date_format }}</time>
+	<div>{{ post.excerpt }}</div>
+  </li>
+{% endfor %}
+</ul>

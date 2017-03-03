@@ -1,0 +1,20 @@
+{% capture comment_id %}comment-{{include.index}}{% endcapture%}
+
+<article id="{{ comment_id }}" itemprop="comment" itemscope itemtype="http://schema.org/Comment">
+	<header>
+		<div itemprop="author" itemscope itemtype="http://schema.org/Person">
+			<h3 itemprop="name">
+			{% unless include.url == blank %}
+				<a rel="external nofollow" itemprop="url" href="{{ include.url }}">{{ include.name }}</a>
+			{% else %}
+				{{ include.name }}
+			{% endunless %}
+			</h3>
+			<img itemprop="image" src="https://www.gravatar.com/avatar/{{ include.email }}?d=mm&s=60" src="https://www.gravatar.com/avatar/{{ include.email }}?d=mm&s=120 2x" alt="{{ include.name }}">
+		</div>
+		<a href="#{{ comment_id }}" itemprop="url">
+			<time pubdate datetime="{{ include.date | date_to_xmlschema }}" itemprop="datePublished">{{ include.date | date: site.date_time_format }}</time>
+		</a>
+	</header>
+	<div itemprop="text">{{ include.message | markdownify }}</div>
+</article>

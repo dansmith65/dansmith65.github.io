@@ -1,0 +1,17 @@
+{% assign year = page.date | date: "%Y" %}
+
+{% if site.data.comments[year][page.slug] %}
+{% assign comments = site.data.comments[year][page.slug] | sort %}
+<section id="comments">
+	<h2><span itemprop="commentCount">{{ comments | size }}</span> Comment{% if comments.size > 1 %}s{% endif %}</h2>
+
+	{% for comment in comments %}
+		{% assign email = comment[1].email %}
+		{% assign name = comment[1].name %}
+		{% assign url = comment[1].url %}
+		{% assign date = comment[1].date %}
+		{% assign message = comment[1].message %}
+		{% include comment.html index=forloop.index email=email name=name url=url date=date message=message %}
+	{% endfor %}
+</section>
+{% endif %}

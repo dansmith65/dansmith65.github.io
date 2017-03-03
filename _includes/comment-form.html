@@ -1,0 +1,38 @@
+{% assign year = page.date | date: "%Y" %}
+
+<section id="comment-form-section">
+{% if page.comments_locked %}
+	<p id="comments-locked"><em>Comments are closed. If you have something you'd like to say about this post you can email me.</em></p>
+{% else %}
+	<h2>Leave a Comment</h2>
+	<form id="comment-form" method="post" action="https://api.staticman.net/v2/entry/dansmith65/dansmith65.github.io/master/comments" onsubmit="return submit_comment(this);">
+	  <fieldset>
+		<label for="comment-form-message">Comment <small><a href="{% post_url /2017/2017-03-01-comments %}#comment-1">Markdown</a> is supported</small></label>
+		<textarea type="text" rows="4" id="comment-form-message" name="fields[message]" tabindex="1" required></textarea>
+	  </fieldset>
+	  <fieldset>
+		<label for="comment-form-name">Name</label>
+		<input type="text" id="comment-form-name" name="fields[name]" tabindex="2" required />
+	  </fieldset>
+	  <fieldset>
+		<label for="comment-form-email">Email address <small>optional</small></label>
+		<input type="email" id="comment-form-email" name="fields[email]" tabindex="3" />
+	  </fieldset>
+	  <fieldset>
+		<label for="comment-form-url">Website <small>optional</small></label>
+		<input type="url" id="comment-form-url" name="fields[url]" tabindex="4"/>
+	  </fieldset>
+	  <fieldset style="display: none;">
+		<input type="hidden" name="options[slug]" value="{{ page.slug }}">
+		<input type="hidden" name="options[year]" value="{{ year }}">
+		<input type="hidden" name="options[redirect]" value="{{ page.url }}">
+		<label for="comment-form-location">Not used. Leave blank if you are a human.</label>
+		<input type="text" id="comment-form-location" name="fields[hidden]" autocomplete="off"/>
+	  </fieldset>
+	  <p class="hidden notice"></p>
+	  <fieldset>
+		<button type="submit" id="comment-form-submit" tabindex="5">Submit Comment</button>
+	  </fieldset>
+	</form>
+{% endif %}
+</section>

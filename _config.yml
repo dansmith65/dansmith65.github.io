@@ -11,7 +11,7 @@ email: dan@dansmith65.com
 description: > # this means to ignore newlines until "baseurl:"
   My personal website.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://dansmith65.com" # the base hostname & protocol for your site
+url: "http://www.dansmith65.com" # the base hostname & protocol for your site
 twitter_username: dansmith65
 github_username:  dansmith65
 safe: true
@@ -52,6 +52,11 @@ defaults:
       path: ""
       type: "posts"
     values:
-      permalink: "/blog/:year/:month/:title/"
+      permalink: "/blog/:year/:slug.html"
       layout: post
       author: Daniel Smith
+      comments: true
+      comments_locked: false
+
+date_format: '%F'
+date_time_format: '%F at %l:%M %p'
