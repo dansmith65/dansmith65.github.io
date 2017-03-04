@@ -4,7 +4,7 @@
 	<header>
 		<div itemprop="author" itemscope itemtype="http://schema.org/Person">
 			<h3 itemprop="name">
-			{% unless include.url == blank %}
+			{% unless include.url == '' %}
 				<a rel="external nofollow" itemprop="url" href="{{ include.url }}">{{ include.name }}</a>
 			{% else %}
 				{{ include.name }}
