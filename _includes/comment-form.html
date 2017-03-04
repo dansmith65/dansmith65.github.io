@@ -10,6 +10,7 @@
 		<label for="comment-form-message">Comment <small><a href="{% post_url /2017/2017-03-01-comments %}#comment-1">Markdown</a> is supported</small></label>
 		<textarea type="text" rows="4" id="comment-form-message" name="fields[message]" tabindex="1" required></textarea>
 	  </fieldset>
+	  <div id="comment-form-additional">
 	  <fieldset>
 		<label for="comment-form-name">Name</label>
 		<input type="text" id="comment-form-name" name="fields[name]" tabindex="2" required />
@@ -33,6 +34,7 @@
 	  <fieldset>
 		<button type="submit" id="comment-form-submit" tabindex="5">Submit Comment</button>
 	  </fieldset>
+	  </div>
 	</form>
 {% endif %}
 </section>

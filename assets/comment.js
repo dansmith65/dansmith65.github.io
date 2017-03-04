@@ -1,3 +1,24 @@
+document.addEventListener("DOMContentLoaded",function(){
+	/* hide additional form fields until first field becomes active */
+	var commentFormAdditional = document.getElementById("comment-form-additional");
+	var commentFormMessage = document.getElementById("comment-form-message");
+	commentFormAdditional.classList.add('hidden');
+	var commentFormMessageOnFocusDone = false;
+	commentFormMessage.onfocus = function(){
+		if (!commentFormMessageOnFocusDone) {
+			commentFormAdditional.classList.remove('hidden');
+			commentFormMessageOnFocusDone = true;
+		}
+	};
+	commentFormMessage.oninput = function(){
+		while (commentFormMessage.scrollHeight > commentFormMessage.clientHeight) {
+			if (commentFormMessage.rows > 30 ) {break;};
+			commentFormMessage.rows += 1;
+		}
+	};
+});
+
+
 /* http://mycodingtricks.com/javascript/submit-form-using-javascript-ajax/ */
 function submit_comment(commentForm){
 	/* change form style while processing */
