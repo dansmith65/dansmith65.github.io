@@ -25,7 +25,7 @@
 	  <fieldset style="display: none;">
 		<input type="hidden" name="options[slug]" value="{{ page.slug }}">
 		<input type="hidden" name="options[year]" value="{{ year }}">
-		<input type="hidden" name="options[redirect]" value="{{ page.url | absolute_url }}">
+		<noscript><input type="hidden" name="options[redirect]" value="{{ page.url | absolute_url }}"></noscript>
 		<label for="comment-form-location">Not used. Leave blank if you are a human.</label>
 		<input type="text" id="comment-form-location" name="fields[hidden]" autocomplete="off"/>
 	  </fieldset>
