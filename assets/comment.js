@@ -9,7 +9,7 @@ function submit_comment(commentForm){
 	var notice = commentForm.getElementsByClassName("notice");
 	notice = notice[0];
 	var data = serialize(commentForm);
-	console.log(data);
+	//console.log(data);
 	
 	/* Submit Form Using Ajax */
 	var http = new XMLHttpRequest();
@@ -28,7 +28,7 @@ function submit_comment(commentForm){
 			/* keep the comment form disabled because I don't want another submition */
 		} else {
 			/* show error */
-			notice.innerHTML = "<strong>Error!</strong> Sorry, something went wrong; your comment was not submitted.<p><small>" + http.responseText + "</small></p>" ;
+			notice.innerHTML = "<strong>Error!</strong> Sorry, something went wrong.<p><small>" + http.responseText + "</small></p>" ;
 			notice.classList.remove('success');
 			notice.classList.add('danger');
 			notice.classList.remove('hidden');
