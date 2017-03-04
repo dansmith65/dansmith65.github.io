@@ -8,10 +8,13 @@ function submit_comment(commentForm){
 	var action = commentForm.getAttribute("action");
 	var notice = commentForm.getElementsByClassName("notice");
 	notice = notice[0];
+	var submit = document.getElementById("comment-form-submit");
+	var submitText = submit.innerHTML;
 	var data = serialize(commentForm);
 	//console.log(data);
 	
 	/* Submit Form Using Ajax */
+	submit.innerHTML = "Sending...";
 	var http = new XMLHttpRequest();
 	http.open(method,action,true);
 	http.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
@@ -25,6 +28,7 @@ function submit_comment(commentForm){
 			notice.classList.remove('danger');
 			notice.classList.add('success');
 			notice.classList.remove('hidden');
+			submit.classList.add('hidden');
 			/* keep the comment form disabled because I don't want another submition */
 		} else {
 			/* show error */
@@ -33,6 +37,7 @@ function submit_comment(commentForm){
 			notice.classList.add('danger');
 			notice.classList.remove('hidden');
 			commentForm.classList.remove('disabled');
+			submit.innerHTML = submitText ;
 		}
 	};
 
