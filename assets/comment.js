@@ -11,8 +11,18 @@ document.addEventListener("DOMContentLoaded",function(){
 		}
 	};
 	commentFormMessage.oninput = function(){
+		var h = window.innerHeight;
+		if ( h <= 400 ) {
+			var maxRows = 5 ;
+		} else if ( h <= 700 ) {
+			var maxRows = 10 ;
+		} else if ( h <= 900 ) {
+			var maxRows = 15 ;
+		} else {
+			var maxRows = 25 ;
+		}
 		while (commentFormMessage.scrollHeight > commentFormMessage.clientHeight) {
-			if (commentFormMessage.rows > 30 ) {break;};
+			if (commentFormMessage.rows >= maxRows ) {break;};
 			commentFormMessage.rows += 1;
 		}
 	};
