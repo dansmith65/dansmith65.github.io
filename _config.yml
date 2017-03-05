@@ -46,6 +46,7 @@ sass:
 
 # Front Matter defaults
 # https://jekyllrb.com/docs/configuration/#front-matter-defaults
+permalink: pretty
 defaults:
   -
     scope:
