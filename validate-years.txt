@@ -1,0 +1,35 @@
+---
+layout: normalize_whitespace
+permalink: /blog/validate-years.txt
+---
+
+{% comment %}
+	To be able to list posts by year they were published, a file must exist in the posts_by_year
+	collection for each year that posts exist for. The name of the file must be the year, and it
+	must contain frontmater, but nothing else is required.
+	This file verifies that a "year" file exist for every post's publish date.
+	
+	If one doesn't exist:
+		a build error can be triggered by adding this to the end of the for loop:
+			{% include year_missing %}
+		or the file can contain a list of missing items by using this instead:
+			{{year}}
+{% endcomment %}
+
+{% assign collection = site.collections | where:"label","posts_by_year" %}
+
+{% for post in site.posts %}
+  {% assign year = post.date | date: "%Y" %}
+  {% assign found = false %}
+  
+  {% for doc in collection.first.docs %}
+    {% if year == doc.slug %}
+	  {% assign found = true %}
+	  {% break %}
+	{% endif %}
+  {% endfor %}
+  
+  {% unless found %}
+    {% include year_missing %}
+  {% endunless %}
+{% endfor %}

@@ -16,6 +16,8 @@ twitter_username: dansmith65
 github_username:  dansmith65
 safe: true
 timezone: America/Phoenix
+date_format: '%F'
+date_time_format: '%F at %l:%M %p'
 
 # Build settings
 markdown: kramdown
@@ -44,6 +46,13 @@ exclude:
 sass:
   style: compressed
 
+  
+collections:
+  posts_by_year:
+    output: true
+    permalink: "/blog/:name/"
+
+
 # Front Matter defaults
 # https://jekyllrb.com/docs/configuration/#front-matter-defaults
 permalink: pretty
@@ -58,6 +67,10 @@ defaults:
       author: Daniel Smith
       comments: true
       comments_locked: false
+  -
+    scope:
+      path: ""
+      type: "posts_by_year"
+    values:
+      layout: posts_by_year
 
-date_format: '%F'
-date_time_format: '%F at %l:%M %p'

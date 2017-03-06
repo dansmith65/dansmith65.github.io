@@ -1,0 +1,21 @@
+{% comment %}
+	If included on a post, no parameters are necessary.
+	If not, populate post parameter with the post to return the date for, like:
+		{% include post-date.html post=post %}
+{% endcomment %}
+
+{% if include.post %}
+	{% assign date = include.post.date %}
+{% else %}
+	{% assign date = page.date %}
+{% endif %}
+{% assign year = date | date: "%Y" %}
+{% capture href %}/blog/{{year}}/{% endcapture %}
+
+<time class="post-meta" pubdate datetime="{{ date | date_to_xmlschema }}" itemprop="datePublished">
+{% unless href == page.url %}
+  <a href="{{href}}" title="All posts in {{ year }}">{{ date | date: site.date_format }}</a>
+{% else %}
+  {{ date | date: site.date_format }}
+{% endunless %}
+</time>
