@@ -14,7 +14,6 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://www.dansmith65.com" # the base hostname & protocol for your site
 twitter_username: dansmith65
 github_username:  dansmith65
-safe: true
 timezone: America/Phoenix
 date_format: '%F'
 date_time_format: '%F at %l:%M %p'
@@ -24,6 +23,7 @@ markdown: kramdown
 theme: minima
 gems:
   - jekyll-feed
+  - jekyll-sitemap
 exclude:
   - README.md
   - CNAME
