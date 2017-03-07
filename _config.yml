@@ -46,11 +46,14 @@ exclude:
 sass:
   style: compressed
 
-  
+
 collections:
   posts_by_year:
     output: true
     permalink: "/blog/:name/"
+  posts_by_tag:
+    output: true
+    permalink: "/blog/tags/:name/"
 
 
 # Front Matter defaults
@@ -73,4 +76,10 @@ defaults:
       type: "posts_by_year"
     values:
       layout: posts_by_year
+  -
+    scope:
+      path: ""
+      type: "posts_by_tag"
+    values:
+      layout: posts_by_tag
 

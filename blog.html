@@ -3,6 +3,55 @@ layout: page
 title: Blog
 ---
 
+{% comment %}
+	http://stackoverflow.com/a/24744306/1327931
+	Get all tags and their post count as delimited text, sort the text,
+	extract individual elements from the sorted text.
+	Pad post count, so it will sort properly as text.
+	
+	In addition to sorting by post count, am sorting by tag name for those
+	with the same post count. In order to simplify this logic, I used the
+	index in the for loop, and since I wanted largest post count first
+	I used rindex.
+{% endcomment %}
+{% capture tags %}
+	{% for tag in site.tags %}
+		{{ tag[1].size | plus: 1000 }}#{{ tag[0] | downcase }}#{{ tag[0] }}{% unless forloop.last %}, {% endunless %}
+	{% endfor %}
+{% endcapture %}
+{% comment %}
+	format: nnnn#lower-case-tag#Tag
+		nnnn = tag count with 4 digits
+		lower-case-tag = so tag case will not impact sorting
+		Tag = actual tag text to display
+{% endcomment %}
+{% assign sorted_tags = tags | strip | split:', ' | sort %}
+
+<p class="post-tags">
+{% assign tags = "" %}
+{% for nil in sorted_tags %}
+	{% assign temp = sorted_tags[forloop.rindex0] | split: '#' %}
+	{% assign count = temp[0] | minus: 1000 %}
+	{% assign tag = temp[2] | strip %}
+	
+	{% assign next_index = forloop.rindex0 | minus: 1 %}
+	{% assign temp = sorted_tags[next_index] | split: '#' %}
+	{% assign count_next = temp[0] | minus: 1000 %}
+	
+	{% capture tags %}{{ tags }}    {{ tag }}{% endcapture %}
+	
+	{% if count != count_next or forloop.last %}
+		{% assign tags = tags | strip | split:'    ' %}
+		{% for nil in tags %}
+			{% assign tag = tags[forloop.rindex0] | strip %}
+			<a class="post-tag" href="/blog/tags/{{ tag | slugify }}/" title="{{ count }} posts tagged with &ldquo;{{ tag }}&rdquo;">{{ tag }}<span class="post-tag-count">[{{ count }}]</span></a>
+		{% endfor %}
+		{% assign tags = "" %}
+	{% endif %}
+{% endfor %}
+</p>
+
+
 {% for post in site.posts %}
 
   {% assign year = post.date | date: "%Y" %}

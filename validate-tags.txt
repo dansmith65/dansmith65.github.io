@@ -1,6 +1,6 @@
 ---
 layout: normalize_whitespace
-permalink: /blog/validate-years.txt
+permalink: /blog/validate-tags.txt
 ---
 
 {% comment %}
@@ -11,23 +11,24 @@ permalink: /blog/validate-years.txt
 	
 	If one doesn't exist:
 		a build error can be triggered by adding this to the end of the for loop:
-			{% include year_missing %}
+			{% include tag_missing %}
 		or the file can contain a list of missing items by using this instead:
-			{{year}}
+			|slug:{{tag_slug}}|title:{{tag_title}}|
 {% endcomment %}
 
-{% for post in site.posts %}
-  {% assign year = post.date | date: "%Y" %}
+{% for tag in site.tags %}
+  {% assign tag_title = tag.first %}
+  {% assign tag_slug = tag.first | slugify %}
   {% assign found = false %}
   
-  {% for doc in site.posts_by_year %}
-    {% if year == doc.slug %}
+  {% for doc in site.posts_by_tag %}
+    {% if tag_slug == doc.slug and tag_title == doc.title %}
 	  {% assign found = true %}
 	  {% break %}
 	{% endif %}
   {% endfor %}
   
   {% unless found %}
-	{% include year_missing %}
+			{% include tag_missing %}
   {% endunless %}
 {% endfor %}

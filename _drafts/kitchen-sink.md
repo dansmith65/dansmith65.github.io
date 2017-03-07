@@ -1,7 +1,5 @@
 ---
-title: "Kitchen Sink Post"
-tags:
-  - sample
+title: Kitchen Sink Post
 ---
 
 Just about everything I need to style in my theme.

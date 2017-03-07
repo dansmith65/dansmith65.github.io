@@ -6,7 +6,10 @@ layout: default
 
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
-    <p class="post-meta">{% include post-date.html %}</p>
+    <div class="post-meta">
+		{% include post-date.html %}
+		{% include post-tags.html %}
+	</div>
   </header>
   
   <div class="post-content" itemprop="articleBody">
