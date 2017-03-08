@@ -11,15 +11,15 @@
 {% endif %}
 
 {% if tags.size > 0 %}
-<span class="post-tags">
+<span class="post-tags" itemprop="keywords">
 {% for tag in tags %}
 {% capture href %}/blog/tags/{{ tag | slugify }}/{% endcapture %}
 {% unless href == page.url %}
 	{% assign count = site.tags[tag].size %}
 	{% if count > 1 %}{% assign count_s = "s" %}{% endif %}
-	<a class="post-tag" href="{{href}}" title="{{ count }} post{{ count_s }} tagged with &ldquo;{{ tag }}&rdquo;">{{ tag }}</a>
+	<a class="post-tag" href="{{href}}" rel="tag" title="{{ count }} post{{ count_s }} tagged with &ldquo;{{ tag }}&rdquo;">{{ tag }}</a>
 {% else %}
-  <span class="post-tag">{{ tag }}</span>
+	<span class="post-tag">{{ tag }}</span>
 {% endunless %}
 {% endfor %}
 </span>

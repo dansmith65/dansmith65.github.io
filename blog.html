@@ -1,7 +1,9 @@
 ---
-layout: page
+layout: default
 title: Blog
 ---
+
+<h1>{{page.title}}</h1>
 
 {% comment %}
 	http://stackoverflow.com/a/24744306/1327931
@@ -53,23 +55,18 @@ title: Blog
 
 
 {% for post in site.posts %}
+	{% assign year = post.date | date: "%Y" %}
+	{% assign next_year = post.previous.date | date: "%Y" %}
 
-  {% assign year = post.date | date: "%Y" %}
-  {% assign next_year = post.previous.date | date: "%Y" %}
-  
-  {% if forloop.first or year != next_year and year != on_year %}
-  {% assign on_year = year %}
-  <h3 id="{{year}}"><a href="/blog/{{year}}/" title="Expand posts in {{ year }}">{{ year }}</a></h3>
-  <ul>
-  {% endif %}
-  
-  <li>
-    <small>{{ post.date | date: "%^b-%d" }}</small>
-	<a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-  </li>
-  
-  {% if forloop.last or year != next_year %}
-  </ul>
-  {% endif %}
-  
+	{% if forloop.first or year != next_year and year != on_year %}
+	{% assign on_year = year %}
+	<section>
+	<header><h2 id="{{year}}"><a href="/blog/{{year}}/" title="Expand posts in {{ year }}">{{ year }}</a></h2></header>
+	<ul class="post-list-minimal">
+	{% endif %}
+		<li>{% include post-list-minimal.html post=post %}</li>
+	{% if forloop.last or year != next_year %}
+	</ul>
+	</section>
+	{% endif %}
 {% endfor %}

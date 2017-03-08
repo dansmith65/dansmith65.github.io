@@ -1,20 +1,20 @@
 {% capture comment_id %}comment-{{include.index}}{% endcapture %}
 
 <article id="{{ comment_id }}" itemprop="comment" itemscope itemtype="http://schema.org/Comment">
-	<header>
-		<div itemprop="author" itemscope itemtype="http://schema.org/Person">
-			<h3 itemprop="name">
-			{% unless include.url == '' %}
-				<a rel="external nofollow" itemprop="url" href="{{ include.url }}">{{ include.name }}</a>
-			{% else %}
-				{{ include.name }}
-			{% endunless %}
-			</h3>
-			<img itemprop="image" src="https://www.gravatar.com/avatar/{{ include.email }}?d=mm&s=60" src="https://www.gravatar.com/avatar/{{ include.email }}?d=mm&s=120 2x" alt="{{ include.name }}">
-		</div>
-		<a href="#{{ comment_id }}" itemprop="url">
-			<time pubdate datetime="{{ include.timestamp | date_to_xmlschema }}" itemprop="datePublished">{{ include.timestamp | date: site.date_time_format }}</time>
-		</a>
+	<header itemprop="author" itemscope itemtype="http://schema.org/Person">
+		<h3 itemprop="name">
+		{% unless include.url == '' %}
+			<address><a rel="external nofollow" itemprop="url" href="{{ include.url }}">{{ include.name }}</a></address>
+		{% else %}
+			{{ include.name }}
+		{% endunless %}
+		</h3>
+		<img itemprop="image" src="https://www.gravatar.com/avatar/{{ include.email }}?d=mm&s=60" src="https://www.gravatar.com/avatar/{{ include.email }}?d=mm&s=120 2x" alt="{{ include.name }}">
 	</header>
+	<footer>
+		<a href="#{{ comment_id }}" itemprop="url">
+			<time datetime="{{ include.timestamp | date_to_xmlschema }}" itemprop="datePublished">{{ include.timestamp | date: site.date_time_format }}</time>
+		</a>
+	</footer>
 	<div itemprop="text">{{ include.message | markdownify }}</div>
 </article>

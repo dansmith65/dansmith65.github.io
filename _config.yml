@@ -8,20 +8,35 @@
 # Site settings
 title: Daniel Smith
 email: dan@dansmith65.com
-description: > # this means to ignore newlines until "baseurl:"
-  My personal website.
+description: A personal website of miscellany.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://www.dansmith65.com" # the base hostname & protocol for your site
-twitter_username: dansmith65
+author: dansmith65
+twitter:
+  username: dansmith65  # used by seo plugin
 github_username:  dansmith65
+    # If "github" exists as a setting, then github-metadata plugin populates it,
+    # which adds about 8 seconds to the build time.
+    # That's why I don't structure the github username the same way as twitter
+repository: dansmith65/dansmith65.github.io
+social:
+  links:
+    - https://twitter.com/dansmith65
+    - https://www.facebook.com/dansmith65
+    - https://www.linkedin.com/in/dansmith65
+    - https://plus.google.com/+dansmith6565
+    - https://github.com/dansmith65
+google_site_verification: sD4H3EW3zsbZYbJKIsOHvGkgxUSpWHwthv_xmItCvLI
 timezone: America/Phoenix
 date_format: '%F'
 date_time_format: '%F at %l:%M %p'
+excerpt_separator: <!--more-->
 
 # Build settings
 markdown: kramdown
 theme: minima
 gems:
+  - jekyll-seo-tag
   - jekyll-feed
   - jekyll-sitemap
 exclude:
@@ -67,7 +82,7 @@ defaults:
     values:
       permalink: "/blog/:year/:slug.html"
       layout: post
-      author: Daniel Smith
+      author: dansmith65
       comments: true
       comments_locked: false
   -
@@ -76,10 +91,12 @@ defaults:
       type: "posts_by_year"
     values:
       layout: posts_by_year
+      description: List of posts in a year
   -
     scope:
       path: ""
       type: "posts_by_tag"
     values:
       layout: posts_by_tag
+      description: List of posts with a tag
 

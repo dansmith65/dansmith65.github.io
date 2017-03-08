@@ -2,15 +2,12 @@
 layout: default
 ---
 
-<h1>Posts Tagged With &ldquo;{{page.title}}&rdquo;</h1>
+<section>
+<header><h1>Posts Tagged With &ldquo;{{page.title}}&rdquo;</h1></header>
 
 <ul class="post-list">
 {% for post in site.tags[page.title] %}
-	<li>
-		<h2><a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
-		{% include post-date.html post=post %}
-		{% include post-tags.html post=post %}
-		<div>{{ post.excerpt }}</div>
-	</li>
+	<li>{% include post-list.html post=post %}</li>
 {% endfor %}
 </ul>
+</section>

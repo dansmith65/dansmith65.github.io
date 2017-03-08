@@ -12,7 +12,7 @@
 {% assign year = date | date: "%Y" %}
 {% capture href %}/blog/{{year}}/{% endcapture %}
 
-<time class="post-meta" pubdate datetime="{{ date | date_to_xmlschema }}" itemprop="datePublished">
+<time datetime="{{ date | date_to_xmlschema }}" itemprop="datePublished">
 {% unless href == page.url %}
   <a href="{{href}}" title="All posts in {{ year }}">{{ date | date: site.date_format }}</a>
 {% else %}

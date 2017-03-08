@@ -1,8 +1,11 @@
 ---
 title: Kitchen Sink Post
+excerpt: Just about everything I need to style in my theme.
 ---
 
 Just about everything I need to style in my theme.
+
+<!--more-->
 
 This file started as a copy of https://github.com/mmistakes/made-mistakes-jekyll/blob/master/src/_drafts/kitchen-sink.md
 

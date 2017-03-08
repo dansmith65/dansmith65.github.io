@@ -1,0 +1,10 @@
+{% comment %}
+	Populate post parameter like:
+		{% include post-list-minimal.html post=post %}
+{% endcomment %}
+<article itemscope itemtype="http://schema.org/BlogPosting">
+	<footer><time datetime="{{ include.post.date | date_to_xmlschema }}" itemprop="datePublished">{{ include.post.date | date: "%^b-%d" }}</time></footer>
+	<header class="post-header">
+		<h3><a href="{{ include.post.url | relative_url }}" itemprop="name headline">{{ include.post.title | escape }}</a></h3>
+	</header>
+</article>

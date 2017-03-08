@@ -1,0 +1,21 @@
+{% comment %}
+	If included on a post, no parameters are necessary.
+	If not, populate post parameter like:
+		{% include post-meta.html post=post %}
+{% endcomment %}
+
+{% if include.post %}
+	{% assign p = include.post %}
+{% else %}
+	{% assign p = page %}
+{% endif %}
+
+<footer>
+	{% include post-date.html post=p %}
+	{% if page.author %}
+	<span itemprop="author" itemscope itemtype="http://schema.org/Person">
+		<meta itemprop="name" content="{{ site.data.authors[page.author].name }}">
+	</span>
+	{% endif %}
+	{% include post-tags.html post=p %}
+</footer>
