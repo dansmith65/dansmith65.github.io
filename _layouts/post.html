@@ -1,17 +1,23 @@
 ---
-layout: default
+layout: base
 ---
+<main aria-label="Content">
+	<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+		<div class="wrapper">
+			<header><h1 itemprop="name headline">{{ page.title | escape }}</h1></header>
+			{% include post-meta.html post=post %}
+			
+			<div class="post-content" itemprop="articleBody">
+			{{ content }}
+			</div>
+		</div>
 
-<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-
-  <header><h1 itemprop="name headline">{{ page.title | escape }}</h1></header>
-  {% include post-meta.html post=post %}
-  
-  <div class="post-content" itemprop="articleBody">
-    {{ content }}
-  </div>
-
-  {% if page.comments %}
-    {% include comments.html %}
-  {% endif %}
-</article>
+		{% if page.comments %}
+		<div id="comments-wrapper">
+		<div class="wrapper">
+			{% include comments.html %}
+		</div>
+		</div>
+		{% endif %}
+	</article>
+</main>

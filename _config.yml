@@ -78,7 +78,7 @@ defaults:
   -
     scope:
       path: ""
-      type: "posts"
+      type: posts
     values:
       permalink: "/blog/:year/:slug.html"
       layout: post
@@ -88,14 +88,14 @@ defaults:
   -
     scope:
       path: ""
-      type: "posts_by_year"
+      type: posts_by_year
     values:
       layout: posts_by_year
       description: List of posts in a year
   -
     scope:
       path: ""
-      type: "posts_by_tag"
+      type: posts_by_tag
     values:
       layout: posts_by_tag
       description: List of posts with a tag

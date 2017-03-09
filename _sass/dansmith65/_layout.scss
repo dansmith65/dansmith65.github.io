@@ -141,7 +141,7 @@ footer {
  * Posts
  */
 .post {
-	> footer {
+	footer {
 		margin-bottom: $spacing-unit;
 		font-size: $small-font-size;
 	}
@@ -208,8 +208,11 @@ footer {
 /**
  * Comments
  */
+#comments-wrapper {
+	background-color: mix($background-color, $brand-color, 97%);
+}
 #comments {
-	margin-bottom: $spacing-unit * 2;
+	overflow: auto;
 
 	> h2 {
 		border-bottom: 4px solid $grey-color;
