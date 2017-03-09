@@ -141,10 +141,11 @@ footer {
  * Posts
  */
 .post {
-	footer {
-		margin-bottom: $spacing-unit;
-		font-size: $small-font-size;
-	}
+}
+
+.post-footer {
+	margin-bottom: $spacing-unit;
+	font-size: $small-font-size;
 }
 
 .post-list {
@@ -219,10 +220,7 @@ footer {
 	}
 
 	> article {
-		position: relative;
-		margin-top: $spacing-unit;
 		margin-bottom: $spacing-unit * 2;
-		padding-left: 80px;
 
 		> header {
 			> h3 {
@@ -231,14 +229,16 @@ footer {
 		}
 		
 		> footer {
-			margin-bottom: $spacing-unit / 2;
 		}
 		
 		[itemprop="author"] {
 			[itemprop="image"] {
-				position: absolute;
-				top: 0;
-				left: 0;
+				float: left;
+				width: $spacing-unit * 2;
+				margin-right: $spacing-unit / 2;
+				@include media-query($on-palm) {
+					margin-bottom: $spacing-unit / 2;
+				}
 			}
 			[itemprop="name"] {
 				margin-bottom: 0;
@@ -247,6 +247,14 @@ footer {
 		
 		time {
 			font-size: $small-font-size;
+		}
+
+		[itemprop="text"] {
+			clear: both;
+			margin-left: $spacing-unit * 2.5 ; /* author image width + right margin */
+			@include media-query($on-palm) {
+				margin-left: 0;
+			}
 		}
 	}
 }
