@@ -22,7 +22,7 @@
   {% assign t = page.tags | join: '  ' %}
   {% assign k = page.keywords | join: '  ' %}
   {% assign keywords = t | append: '  ' | append: k | strip | replace: '  ', ', ' %}
-  {% if keywords %}
+  {% unless keywords == '' %}
   <meta name="keywords" content="{{ keywords }}" />
-  {% endif %}
+  {% endunless %}
 </head>

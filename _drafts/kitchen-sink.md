@@ -9,6 +9,20 @@ Just about everything I need to style in my theme.
 
 This file started as a copy of https://github.com/mmistakes/made-mistakes-jekyll/blob/master/src/_drafts/kitchen-sink.md
 
+# Heading 1
+
+## Heading 2
+
+### Heading 3
+
+#### Heading 4
+
+##### Heading 5
+
+###### Heading 6
+
+---
+
 # Heading 1: Lorem ipsum dolor sit amet, test link adipiscing elit. **This is strong**. Nullam dignissim convallis est. Quisque aliquam.
 
 ## Heading 2: Lorem ipsum dolor sit amet, test link adipiscing elit. **This is strong**. Nullam dignissim convallis est. Quisque aliquam.
@@ -20,6 +34,8 @@ This file started as a copy of https://github.com/mmistakes/made-mistakes-jekyll
 ##### Heading 5: Lorem ipsum dolor sit amet, test link adipiscing elit. **This is strong**. Nullam dignissim convallis est. Quisque aliquam.
 
 ###### Heading 6: Lorem ipsum dolor sit amet, test link adipiscing elit. **This is strong**. Nullam dignissim convallis est. Quisque aliquam.
+
+---
 
 ### Body text
 

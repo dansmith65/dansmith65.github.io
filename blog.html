@@ -31,7 +31,7 @@ title: Blog
 
 <p class="post-tags">
 {% assign tags = "" %}
-{% for nil in sorted_tags %}
+{% for unused in sorted_tags %}
 	{% assign temp = sorted_tags[forloop.rindex0] | split: '#' %}
 	{% assign count = temp[0] | minus: 1000 %}
 	{% assign tag = temp[2] | strip %}
@@ -44,7 +44,7 @@ title: Blog
 	
 	{% if count != count_next or forloop.last %}
 		{% assign tags = tags | strip | split:'    ' %}
-		{% for nil in tags %}
+		{% for unused in tags %}
 			{% assign tag = tags[forloop.rindex0] | strip %}
 			<a class="post-tag" href="/blog/tags/{{ tag | slugify }}/" title="{{ count }} posts tagged with &ldquo;{{ tag }}&rdquo;">{{ tag }}<span class="post-tag-count">[{{ count }}]</span></a>
 		{% endfor %}

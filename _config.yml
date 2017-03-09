@@ -8,7 +8,7 @@
 # Site settings
 title: Daniel Smith
 email: dan@dansmith65.com
-description: A personal website of miscellany.
+description: A personal website of miscellany
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://www.dansmith65.com" # the base hostname & protocol for your site
 author: dansmith65
