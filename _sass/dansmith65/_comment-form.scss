@@ -33,6 +33,7 @@ input, select, select[multiple=multiple], textarea {
 }
 
 #comment-form-section {
+	overflow: auto;
 	margin-bottom: $spacing-unit;
 
 	> h2 {
@@ -55,16 +56,4 @@ input, select, select[multiple=multiple], textarea {
 button {
 	padding: .5em 1em;
 	font-size: 1em;
-}
-
-.notice {
-	font-size: 1.2em;
-}
-
-.notice.success {
-	color: #3c763d;
-}
-
-.notice.danger {
-	color: #a94442;
 }

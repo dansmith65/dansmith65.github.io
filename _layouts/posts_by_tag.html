@@ -3,10 +3,10 @@ layout: default
 ---
 
 <section>
-<header><h1>Posts Tagged With &ldquo;{{page.title}}&rdquo;</h1></header>
+<header><h1>Posts Tagged With &ldquo;{{page.slug}}&rdquo;</h1></header>
 
 <ul class="post-list">
-{% for post in site.tags[page.title] %}
+{% for post in site.tags[page.slug] %}
 	<li>{% include post-list.html post=post %}</li>
 {% endfor %}
 </ul>

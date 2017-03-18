@@ -1,16 +1,33 @@
-document.addEventListener("DOMContentLoaded",function(){
+/* if this file is loaded asyncrynously, DOM may be loaded when it starts */
+if (document.readyState == 'loading'){
+	document.addEventListener("DOMContentLoaded",initializeComments);
+} else {
+	initializeComments();
+}
+
+function initializeComments(){
 	/* hide additional form fields until first field becomes active */
-	var commentFormAdditional = document.getElementById("comment-form-additional");
-	var commentFormMessage = document.getElementById("comment-form-message");
-	commentFormAdditional.classList.add('hidden');
-	var commentFormMessageOnFocusDone = false;
-	commentFormMessage.onfocus = function(){
-		if (!commentFormMessageOnFocusDone) {
-			commentFormAdditional.classList.remove('hidden');
-			commentFormMessageOnFocusDone = true;
+	var additional = document.getElementById("comment-form-additional");
+	var message = document.getElementById("comment-form-message");
+	additional.classList.add('hidden');
+	/* Finds y value of given object: http://stackoverflow.com/a/11986153/1327931 */
+	function findPos(obj) {
+		var curtop = 0;
+		if (obj.offsetParent) {
+			do {
+				curtop += obj.offsetTop;
+			} while (obj = obj.offsetParent);
+		return [curtop];
 		}
+	}
+	var expandCommentForm = function(){
+		additional.classList.remove('hidden');
+		window.scroll(0,findPos(message.parentElement));
+		message.removeEventListener('focus', expandCommentForm);
 	};
-	commentFormMessage.oninput = function(){
+	message.addEventListener('focus', expandCommentForm);
+	/* increase height of textarea as user types */
+	message.oninput = function(){
 		var h = window.innerHeight;
 		if ( h <= 400 ) {
 			var maxRows = 5 ;
@@ -21,12 +38,12 @@ document.addEventListener("DOMContentLoaded",function(){
 		} else {
 			var maxRows = 25 ;
 		}
-		while (commentFormMessage.scrollHeight > commentFormMessage.clientHeight) {
-			if (commentFormMessage.rows >= maxRows ) {break;};
-			commentFormMessage.rows += 1;
+		while (message.scrollHeight > message.clientHeight) {
+			if (message.rows >= maxRows ) {break;};
+			message.rows += 1;
 		}
 	};
-});
+};
 
 
 /* http://mycodingtricks.com/javascript/submit-form-using-javascript-ajax/ */
@@ -37,8 +54,7 @@ function submit_comment(commentForm){
 	/* get data from form */
 	var method = commentForm.getAttribute("method");
 	var action = commentForm.getAttribute("action");
-	var notice = commentForm.getElementsByClassName("notice");
-	notice = notice[0];
+	var notice = commentForm.getElementsByClassName("notice")[0];
 	var submit = document.getElementById("comment-form-submit");
 	var submitText = submit.innerHTML;
 	var data = serialize(commentForm);
@@ -50,26 +66,27 @@ function submit_comment(commentForm){
 	http.open(method,action,true);
 	http.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 
-	/* TODO: use try/catch?  http://help.dottoro.com/ljppxrti.php */
 	http.onload = function() {
 		console.log(http.responseText);
 		if (http.status == 200) {
-			/* success */
 			notice.innerHTML = "Thanks for your input! It has been submitted for moderation." ;
-			notice.classList.remove('danger');
-			notice.classList.add('success');
-			notice.classList.remove('hidden');
+			notice.className = 'notice success';
 			submit.classList.add('hidden');
 			/* keep the comment form disabled because I don't want another submition */
 		} else {
-			/* show error */
-			notice.innerHTML = "<strong>Error!</strong> Sorry, something went wrong.<p><small>" + http.responseText + "</small></p>" ;
-			notice.classList.remove('success');
-			notice.classList.add('danger');
-			notice.classList.remove('hidden');
-			commentForm.classList.remove('disabled');
-			submit.innerHTML = submitText ;
+			error_action();
 		}
+	};
+	http.onerror = function(e) {
+		console.log('error', e);
+		error_action();
+	};
+
+	var error_action = function() {
+		notice.innerHTML = "<strong>Error!</strong> Sorry, something went wrong.<p><small>" + http.responseText + "</small></p>" ;
+		notice.className = 'notice danger';
+		commentForm.classList.remove('disabled');
+		submit.innerHTML = submitText ;
 	};
 
 	http.send(data);

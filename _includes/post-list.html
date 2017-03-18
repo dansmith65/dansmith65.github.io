@@ -11,5 +11,5 @@
 		</h2>
 	</header>
 	{% include post-meta.html post=post %}
-	<div itemprop="description">{{ include.post.excerpt }}</div>
+	<div itemprop="description">{{ include.post.excerpt | rstrip }}<a href="{{ include.post.url | relative_url }}" itemprop="url">...keep reading</a></div>
 </article>

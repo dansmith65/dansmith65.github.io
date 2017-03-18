@@ -1,0 +1,86 @@
+/* http://thesassway.com/intermediate/mixins-for-semi-transparent-colors */
+@mixin alpha-background-color($color, $background) {
+	$percent: alpha($color) * 100%;
+	$opaque: opacify($color, 1);
+	$solid-color: mix($opaque, $background, $percent);
+	background-color: $solid-color;
+	background-color: $color;
+}
+
+#search {
+	position: fixed;
+	top: 0; right: 0; bottom: 0; left: 0;
+	overflow-y: scroll;
+	@include alpha-background-color(rgba(black, 0.5), white);
+
+	>.wrapper {
+		margin-bottom: $spacing-unit * 4;
+	}
+
+	#search-header {
+		text-align: center;
+		margin-top: $spacing-unit / 2;
+		margin-bottom: $spacing-unit / 2;
+		@include media-query($on-palm) {
+			margin-right: $spacing-unit * 2;
+		}
+
+		input[type=search] {
+			/* https://css-tricks.com/webkit-html5-search-inputs/ */
+			font-size: 1.375em;
+			margin-bottom: 0;
+			border: 0;
+			max-width: ($content-width - ($spacing-unit * 2)) / 2 ;
+			@include media-query($on-palm) {
+				max-width: none;
+			}
+		}
+	}
+
+	.search-close {
+		padding: 9px;
+		background-color: $background-color;
+		cursor: pointer;
+		line-height: 0;
+		border-radius: 25px;
+		position: fixed;
+		top: $spacing-unit / 2;
+		right: $spacing-unit;
+		@include media-query($on-palm) {
+			right: $spacing-unit / 2;
+		}
+		box-shadow: 0 2px 10px 0 $grey-color-dark;
+		> svg {
+			width: 30px;
+			height: 30px;
+			transition: transform .2s ease-out;
+			> path {
+				fill: $grey-color-dark;
+			}
+		}
+		&:hover {
+			> svg {
+				transform: scale(1.1);
+				> path {
+					fill: black;
+				}
+			}
+		}
+	}
+
+
+	.post-list {
+		li {
+			background-color: $background-color;
+			padding: 0 ($spacing-unit / 2) $spacing-unit;
+			border-radius: 5px;
+			overflow: auto;
+			margin-top: 0;
+			margin-bottom: $spacing-unit / 2
+		}
+	}
+}
+
+.noscroll {
+	overflow: hidden;
+}

@@ -37,13 +37,6 @@ $on-laptop:			800px !default;
 	}
 }
 
-@mixin border-radius($radius: 0.5em) {
-  -webkit-border-radius: $radius;
-     -moz-border-radius: $radius;
-      -ms-border-radius: $radius;
-          border-radius: $radius;
-}
-
 /**
  * Original idea for this function came from:
  *    https://codepen.io/zgreen/post/contextual-heading-sizes-with-sass
@@ -68,5 +61,6 @@ $on-laptop:			800px !default;
 	"dansmith65/base",
 	"dansmith65/layout",
 	"dansmith65/comment-form",
+	"dansmith65/search",
 	"dansmith65/syntax-highlighting"
 ;

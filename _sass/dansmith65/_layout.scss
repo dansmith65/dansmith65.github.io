@@ -33,6 +33,7 @@ footer {
 	border-top: 5px solid $grey-color-dark;
 	border-bottom: 1px solid $grey-color-light;
 	min-height: 56px;
+	line-height: 56px;
 
 	// Positioning context for the mobile navigation icon
 	position: relative;
@@ -41,9 +42,7 @@ footer {
 .site-title {
 	font-size: $base-font-size * 1.625;
 	font-weight: 300;
-	line-height: 56px;
 	letter-spacing: -1px;
-	margin-bottom: 0;
 	float: left;
 
 	&,
@@ -53,64 +52,34 @@ footer {
 }
 
 .site-nav {
-	float: right;
-	line-height: 56px;
+	text-align: right;
 
-	.menu-icon {
-		display: none;
-	}
-
-	.page-link {
+	>.page-link,
+	>.site-search {
 		color: $text-color;
-		line-height: $base-line-height;
-
-		// Gaps between nav items, but not on the last one
-		&:not(:last-child) {
-			margin-right: 20px;
-		}
+		float: right;
+		padding: 0 $spacing-unit / 2;
+		white-space: nowrap;
 	}
 
-	@include media-query($on-palm) {
-		position: absolute;
-		top: 9px;
-		right: $spacing-unit / 2;
-		background-color: $background-color;
-		border: 1px solid $grey-color-light;
-		border-radius: 5px;
-		text-align: right;
-
-		.menu-icon {
-			display: block;
-			float: right;
-			width: 36px;
-			height: 26px;
-			line-height: 0;
-			padding-top: 10px;
-			text-align: center;
-
-			> svg path {
+	>.site-search {
+		cursor: pointer;
+		> svg {
+			width: 22px;
+			height: 22px;
+			vertical-align: text-bottom;
+			transition: transform .2s ease-out;
+			> path {
 				fill: $grey-color-dark;
 			}
 		}
-
-		.trigger {
-			clear: both;
-			display: none;
-		}
-
-		&:hover .trigger {
-			display: block;
-			padding-bottom: 5px;
-		}
-
-		.page-link {
-			display: block;
-			padding: 5px 10px;
-
-			&:not(:last-child) {
-				margin-right: 0;
+		&:hover {
+			> svg {
+				transform: scale(1.1);
+				> path {
+					fill: black;
+				}
 			}
-			margin-left: 20px;
 		}
 	}
 }
@@ -158,7 +127,7 @@ footer {
 	}
 
 	footer {
-		margin-bottom: $spacing-unit * .5;
+		margin-bottom: $spacing-unit / 2;
 		font-size: $small-font-size;
 	}
 }
@@ -166,13 +135,18 @@ footer {
 .post-list-minimal {
 	list-style: none;
 	margin-left: .5em;
+	display: table;
+
+	article {
+		margin-bottom: $spacing-unit / 2;
+	}
 
 	h3 {
 		font-size: 1em;
 	}
 
 	header, footer {
-		display:inline;
+		display:table-cell;
 		* {
 			display: inline;
 		}
@@ -180,6 +154,9 @@ footer {
 
 	footer {
 		font-size: $small-font-size;
+		width: 4em;
+		text-align: right;
+		padding-right: .5em;
 	}
 }
 
@@ -191,12 +168,14 @@ footer {
 }
 
 .post-tag {
-	font-size: $base-font-size * 0.75;
+	font-size: $small-font-size;
 	margin-left: .5em;
 	padding: .25em .75em;
 	background-color: desaturate(lighten($brand-color, 45%),40%);
 	border: 1px solid lighten($brand-color, 40%);
-	@include border-radius(1em);
+	border-radius: 1em;
+	white-space: nowrap;
+	line-height: 2.25em;
 }
 
 .post-tag-count {
@@ -210,7 +189,9 @@ footer {
  * Comments
  */
 #comments-wrapper {
-	background-color: mix($background-color, $brand-color, 97%);
+	background-color: mix($background-color, $brand-color, 95%);
+	border-top: 1px solid $grey-color-light;
+
 }
 #comments {
 	overflow: auto;
@@ -228,17 +209,16 @@ footer {
 			}
 		}
 		
-		> footer {
-		}
-		
 		[itemprop="author"] {
 			[itemprop="image"] {
 				float: left;
 				width: $spacing-unit * 2;
+				height: $spacing-unit * 2;
 				margin-right: $spacing-unit / 2;
 				@include media-query($on-palm) {
 					margin-bottom: $spacing-unit / 2;
 				}
+				border-radius: $spacing-unit;
 			}
 			[itemprop="name"] {
 				margin-bottom: 0;
@@ -247,6 +227,10 @@ footer {
 		
 		time {
 			font-size: $small-font-size;
+			line-height: $base-font-size * 2;
+			@include media-query($on-palm) {
+				line-height: $base-font-size * 3; /* increase space between links */
+			}
 		}
 
 		[itemprop="text"] {
@@ -256,5 +240,54 @@ footer {
 				margin-left: 0;
 			}
 		}
+	}
+}
+
+
+
+/**
+ * Notices
+ * https://www.w3schools.com/bootstrap/bootstrap_alerts.asp
+ */
+.notice {
+	font-size: 1.2em;
+	padding: $spacing-unit / 2;
+	margin-bottom: $spacing-unit / 2;
+	border: 1px solid transparent;
+	border-radius: 5px;
+}
+
+.notice.success {
+	color: #3c763d;
+	background-color: #dff0d8;
+	border-color: #d6e9c6
+}
+
+.notice.info {
+	color: #31708f;
+	background-color: #d9edf7;
+	border-color: #bce8f1
+}
+
+.notice.warning {
+	color: #8a6d3b;
+	background-color: #fcf8e3;
+	border-color: #faebcc
+}
+
+.notice.danger {
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #ebccd1
+}
+
+
+
+/**
+ * No Javascript
+ */
+.no-js {
+	.site-search {
+		display: none
 	}
 }

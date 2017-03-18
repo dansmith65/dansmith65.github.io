@@ -27,7 +27,7 @@ title: Blog
 		lower-case-tag = so tag case will not impact sorting
 		Tag = actual tag text to display
 {% endcomment %}
-{% assign sorted_tags = tags | strip | split:', ' | sort %}
+{% assign sorted_tags = tags | split:', ' | sort %}
 
 <p class="post-tags">
 {% assign tags = "" %}
@@ -53,13 +53,12 @@ title: Blog
 {% endfor %}
 </p>
 
-
 {% for post in site.posts %}
+	{% assign last_year = year %}
 	{% assign year = post.date | date: "%Y" %}
-	{% assign next_year = post.previous.date | date: "%Y" %}
-
-	{% if forloop.first or year != next_year and year != on_year %}
-	{% assign on_year = year %}
+	{% assign next_year = site.posts[forloop.index].date | date: "%Y" %}
+	
+	{% if forloop.first or year != last_year %}
 	<section>
 	<header><h2 id="{{year}}"><a href="/blog/{{year}}/" title="Expand posts in {{ year }}">{{ year }}</a></h2></header>
 	<ul class="post-list-minimal">
