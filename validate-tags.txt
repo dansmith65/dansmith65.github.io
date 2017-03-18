@@ -4,25 +4,31 @@ permalink: /blog/validate-tags.txt
 ---
 
 {% comment %}
-	To be able to list posts by year they were published, a file must exist in the posts_by_year
-	collection for each year that posts exist for. The name of the file must be the year, and it
-	must contain frontmater, but nothing else is required.
-	This file verifies that a "year" file exist for every post's publish date.
+	To be able to list posts by tag, a file must exist in the posts_by_tag collection for
+	every tag used on a post. The name of the file must be the tag name, and it must
+	contain frontmater, but nothing else is required.
+	
+	This file verifies that a "tag" file exist for every post's tags.
+	
+	Tag names should be lower case!
+	
+	I'm not sure if I need to slugify tag names; I may need to come back to this if it
+	causes issues.
 	
 	If one doesn't exist:
 		a build error can be triggered by adding this to the end of the for loop:
 			{% include tag_missing %}
 		or the file can contain a list of missing items by using this instead:
-			|slug:{{tag_slug}}|title:{{tag_title}}|
+			|slug:{{tag_slug}}|title:{{tag_name}}|
 {% endcomment %}
 
 {% for tag in site.tags %}
-  {% assign tag_title = tag.first %}
-  {% assign tag_slug = tag.first | slugify %}
+  {% assign tag_name = tag.first %}
+  {% assign tag_slug = tag_name | slugify %}
   {% assign found = false %}
   
   {% for doc in site.posts_by_tag %}
-    {% if tag_slug == doc.slug and tag_title == doc.title %}
+    {% if tag_slug == doc.slug and tag_slug == tag_name %}
 	  {% assign found = true %}
 	  {% break %}
 	{% endif %}
