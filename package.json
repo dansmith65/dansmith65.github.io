@@ -1,0 +1,24 @@
+{
+  "name": "@dansmith65/website",
+  "version": "1.0.0",
+  "description": "build tool for my blog",
+  "homepage": "http://dansmith65.com",
+  "repository": "github:dansmith65/dansmith65.github.io",
+  "license": "MIT",
+  "config": {
+    "example": "can be accessed from the environment variable: npm_package_config_example"
+  },
+  "scripts": {
+    "test": "exit 1",
+    "start": "start bundle exec jekyll serve --drafts --future --incremental --host=0.0.0.0",
+    "poststart": "start http://localhost:4000",
+    "build": "bundle exec jekyll build --drafts",
+    "postbuild": "node _scripts/validate-tags-years.js",
+    "validate-tags-years": "node _scripts/validate-tags-years.js",
+    "clean": "rimraf _site"
+  },
+  "devDependencies": {
+    "rimraf": "latest",
+    "run-parallel": "^1.1.6"
+  }
+}

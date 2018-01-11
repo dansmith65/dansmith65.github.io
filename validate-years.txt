@@ -28,6 +28,6 @@ permalink: /blog/validate-years.txt
   {% endfor %}
   
   {% unless found %}
-	{% include year_missing %}
+    {{year}} |
   {% endunless %}
 {% endfor %}

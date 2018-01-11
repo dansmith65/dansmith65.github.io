@@ -35,6 +35,6 @@ permalink: /blog/validate-tags.txt
   {% endfor %}
   
   {% unless found %}
-			{% include tag_missing %}
+    {{tag_slug}} |
   {% endunless %}
 {% endfor %}
