@@ -16,6 +16,11 @@ Relevant npm commands:
 * `npm run env` built-in command that lists environment variables available to the script at runtime
 * refer to "scripts" in [package.json] for additional commands that can be called via `npm run [script]`
 
+## Pictures
+
+Node script in this repo will process source images, creating multiple copies as needed for this blog. Source images are defined as a list of paths (on my local system) in a text file like: [_data/pictures/2018/motorcycle-rebuild-xs1100.txt](./_data/pictures/2018/motorcycle-rebuild-xs1100.txt). Where "2018" is the year from the post, and "motorcycle-rebuild-xs1100" is the post slug. Each line can contain one of three values: a file path, a gallery name prefixed with "#", or blank which will be skipped. Once a file is created, `npm run process-pictures` will read that file and put the resulting pictures in [assets/pictures/2018/motorcycle-rebuild-xs1100](./assets/pictures/2018/motorcycle-rebuild-xs1100). To include those pictures in the post, use: `{% include picture-gallery.html gallery="" %}`, where gallery can be empty to include the images that were not part of a gallery, or the gallery name.
+The process-pictures script will create a json file that is used by the include to get the path to/sizes of pictures. If you update the source txt file, all the pictures and the json file will automatically be re-created. Similarly, if the json file is deleted, all pictures and the json file will be re-created. Because of this automatic creation proces, both the _data/pictures/ and the assets/pictures/ folders should probably not be used for anything other than pictures managed automatically by this script.
+
 
 [validate-tags.txt]: ../df25000a19cb4fe79979c519332969fc4be9ac5a/validate-tags.txt
 [validate-years.txt]: ../df25000a19cb4fe79979c519332969fc4be9ac5a/validate-years.txt

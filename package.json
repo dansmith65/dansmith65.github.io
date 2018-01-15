@@ -12,13 +12,21 @@
     "test": "exit 1",
     "start": "start bundle exec jekyll serve --drafts --future --incremental --host=0.0.0.0",
     "poststart": "start http://localhost:4000",
+    "serve": "npm start",
+    "server": "npm start",
     "build": "bundle exec jekyll build --drafts",
-    "postbuild": "node _scripts/validate-tags-years.js",
-    "validate-tags-years": "node _scripts/validate-tags-years.js",
-    "clean": "rimraf _site"
+    "postbuild": "npm run process-pictures && npm run validate-tags-years",
+    "clean": "rm -rf _site && rm -rf _data/pictures/*/*.json",
+    "//": "------tasks below this line are sub-tasks to those above------",
+    "process-pictures": "node _scripts/process-pictures.js",
+    "validate-tags-years": "node _scripts/validate-tags-years.js"
   },
   "devDependencies": {
-    "rimraf": "latest",
-    "run-parallel": "^1.1.6"
+    "exif-reader": "^1.0.2",
+    "fs-compare": "0.0.4",
+    "fs-extra": "^5.0.0",
+    "glob": "^7.1.2",
+    "run-parallel": "^1.1.6",
+    "sharp": "^0.19.0"
   }
 }

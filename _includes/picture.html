@@ -1,0 +1,15 @@
+{%- comment -%}
+PARAMETERS:
+	file_name	to return a single image, specify it's name, as defined in _data\pictures\{YYYY}\{slug}.json
+	gallery		TODO: might want to use this to display individual images in a gallery
+				(vs loading all specified in the gallery that picture-galler.html does)
+	alt			
+	caption		TODO: not implemented
+{%- endcomment -%}
+{%- assign year = page.date | date: "%Y" -%}
+{%- assign pictures = site.data.pictures[year][page.slug] -%}
+{%- for picture in pictures -%}
+{%- if picture.file_name == include.file_name -%}
+<a href="{{ picture.med.path }}"><img src="{{ picture.thumb.path }}" {% if include.alt %} alt="{{ include.alt }}" {% endif %} width="177" height="177"></a>
+{%- endif -%}
+{%- endfor -%}

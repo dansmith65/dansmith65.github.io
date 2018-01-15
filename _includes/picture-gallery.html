@@ -1,0 +1,14 @@
+{% comment %}
+PARAMETERS:
+	gallery		to return all images in a gallery, specify it's name (with extension)
+	
+TODO
+	When returning a gallery, don't have a way to define caption or alt yet. Probably
+	want to store them along with source paths, but I don't know yet.
+{% endcomment %}
+{% assign year = page.date | date: "%Y" %}
+{% assign pictures = site.data.pictures[year][page.slug] %}
+<div class="gallery">
+	{% unless include.gallery == "" %}<h4>{{include.gallery}}</h4>{% endunless %}
+	{% for picture in pictures %}{% if picture.gallery == include.gallery %}<a href="{{ picture.med.path }}"><img src="{{ picture.thumb.path }}" width="177" height="177"></a>{% endif %}{% endfor %}
+</div>
