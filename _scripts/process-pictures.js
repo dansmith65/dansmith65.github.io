@@ -54,19 +54,14 @@ const processPictureSource = function (picture_source, picture_source_lock) {
         if (!data) return;
         //console.trace(data);
         
-        /*
-        var outDir = path.join([
-            path.dirname(picture_source).replace(/^_data/,'assets'),
-            path.basename(picture_source)
-        ]);
-        */
         var outDir = picture_source.replace(/^_data/,'assets').replace(/\.txt$/,'');
         console.log('picture_source: ' + picture_source);
         console.log('outDir:         ' + outDir);
 
         var lines = data.split(/\r?\n/);
-        var promises = [];
         var gallery = '';
+        /* initialize promises array and data that will be needed once all promises have resolved */
+        var promises = [picture_source, outDir];
         lines.forEach(function(line, i, array){
             line = line.trim();
             if (!line) {
@@ -81,8 +76,18 @@ const processPictureSource = function (picture_source, picture_source_lock) {
         });
 
         Promise.all(promises).then(data => {
+            const picture_source = data.shift();
+            const outDir = data.shift();
+
             console.log('all images created for: ' + picture_source);
+            
+            var json_asset_path = path.join(
+                outDir,
+                path.basename(picture_source, path.extname(picture_source)) + ".json"
+            );
+
             let json = {},
+                json_asset = {},
                 gallery,
                 gallery_last,
                 gallery_slug;
@@ -90,10 +95,25 @@ const processPictureSource = function (picture_source, picture_source_lock) {
                 gallery = obj.gallery;
                 gallery_slug = gallery == "" ? "gallery" : slug(gallery);
                 delete obj.gallery;
+
                 if (! json[gallery_slug]) { json[gallery_slug] = {}; }
                 json[gallery_slug]["title"] = gallery;
                 if (! json[gallery_slug]["pictures"]) { json[gallery_slug]["pictures"] = []; }
                 (json[gallery_slug]["pictures"]).push(obj);
+
+                
+                if (! json_asset[gallery_slug]) { json_asset[gallery_slug] = {}; }
+                json_asset[gallery_slug]["title"] = gallery;
+                if (! json_asset[gallery_slug]["pictures"]) { json_asset[gallery_slug]["pictures"] = []; }
+                delete obj.taken;
+                delete obj.thumb;
+                obj["src"] = obj.med.src;
+                obj["w"] = obj.med.w;
+                obj["h"] = obj.med.h;
+                delete obj.med;
+                delete obj.orig;
+                (json_asset[gallery_slug]["pictures"]).push(obj);
+
             });
             fs.writeJson(picture_source_lock, json, {spaces:'\t'})
                 .then(() => {
@@ -102,7 +122,16 @@ const processPictureSource = function (picture_source, picture_source_lock) {
                 .catch(err => {
                     console.error(err);
                     process.exit(1);
+                });
+            
+            fs.writeJson(json_asset_path, json_asset)
+                .then(() => {
+                    console.log('created ' + json_asset_path);
                 })
+                .catch(err => {
+                    console.error(err);
+                    process.exit(1);
+                });
         });
     });
 };
