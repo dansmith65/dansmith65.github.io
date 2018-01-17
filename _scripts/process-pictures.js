@@ -11,6 +11,9 @@ const fsCompare = require('fs-compare');
 const sharp = require("sharp");
 const exifReader = require('exif-reader');
 const path = require('path');
+const slug = require('slug');
+
+slug.defaults.mode ='rfc3986';
 
 const source_glob = "_data/pictures/*/*.txt";
 
@@ -79,8 +82,20 @@ const processPictureSource = function (picture_source, picture_source_lock) {
 
         Promise.all(promises).then(data => {
             console.log('all images created for: ' + picture_source);
-            //var lock_data = {"files": data};
-            fs.writeJson(picture_source_lock, data, {spaces:'\t'})
+            let json = {},
+                gallery,
+                gallery_last,
+                gallery_slug;
+            data.forEach(obj => {
+                gallery = obj.gallery;
+                gallery_slug = gallery == "" ? "gallery" : slug(gallery);
+                delete obj.gallery;
+                if (! json[gallery_slug]) { json[gallery_slug] = {}; }
+                json[gallery_slug]["title"] = gallery;
+                if (! json[gallery_slug]["pictures"]) { json[gallery_slug]["pictures"] = []; }
+                (json[gallery_slug]["pictures"]).push(obj);
+            });
+            fs.writeJson(picture_source_lock, json, {spaces:'\t'})
                 .then(() => {
                     console.log('created ' + picture_source_lock);
                 })
@@ -128,7 +143,7 @@ const createPictures = function (inPath, outDir, gallery) {
         .jpeg({"quality":80,"progressive":true})
         .toFile(outPathThumb)
         .then(info => {
-            var result = {"path": '/' + outPathThumb.replace(/\\/g,'/'), "width": info.width, "height": info.height};
+            var result = {"src": '/' + outPathThumb.replace(/\\/g,'/'), "w": info.width, "h": info.height};
             //console.log(JSON.stringify(result));
             return result;
         })
@@ -144,7 +159,7 @@ const createPictures = function (inPath, outDir, gallery) {
         .jpeg({"quality":80,"progressive":true})
         .toFile(outPathMed)
         .then(info => {
-            var result = {"path": '/' + outPathMed.replace(/\\/g,'/'), "width": info.width, "height": info.height};
+            var result = {"src": '/' + outPathMed.replace(/\\/g,'/'), "w": info.width, "h": info.height};
             //console.log(JSON.stringify(result));
             return result;
         })
@@ -159,7 +174,7 @@ const createPictures = function (inPath, outDir, gallery) {
         .jpeg({"quality":70,"progressive":true})
         .toFile(outPath)
         .then(info => {
-            var result = {"path": '/' + outPath.replace(/\\/g,'/'), "width": info.width, "height": info.height};
+            var result = {"src": '/' + outPath.replace(/\\/g,'/'), "w": info.width, "h": info.height};
             //console.log(JSON.stringify(result));
             return result;
         })
@@ -171,14 +186,13 @@ const createPictures = function (inPath, outDir, gallery) {
     return Promise.all([taken,thumb, med, orig])
         .then(data => {
             console.log('all images created for ' + inName + ext);
-
             var result = {
                 "gallery": gallery,
                 "file_name": file_name,
                 "taken": data[0],
                 "thumb": data[1],
                 "med": data[2],
-                "orig": data[3],
+                "orig": data[3]
             }
             return result;
         })

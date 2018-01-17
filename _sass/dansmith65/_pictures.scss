@@ -1,9 +1,12 @@
-.gallery{
+.picture-gallery{
 	margin-bottom: 15px;
 
 	figure {
 		display: inline-block;
 		vertical-align: top;
+	}
+	a {
+		display: inline-block;
 	}
 	img {
 		display: inline-block;

@@ -7,8 +7,19 @@ TODO
 	want to store them along with source paths, but I don't know yet.
 {% endcomment %}
 {% assign year = page.date | date: "%Y" %}
-{% assign pictures = site.data.pictures[year][page.slug] %}
-<div class="gallery">
-	{% unless include.gallery == "" %}<h4>{{include.gallery}}</h4>{% endunless %}
-	{% for picture in pictures %}{% if picture.gallery == include.gallery %}<a href="{{ picture.med.path }}"><img src="{{ picture.thumb.path }}" width="177" height="177"></a>{% endif %}{% endfor %}
+{% assign gallery_name = include.gallery %}
+{%- if gallery_name == "" or gallery_name == nil -%}
+	{% assign gallery_name = "gallery" %}
+{%- endif -%}
+{% capture gallery_slug %}{{gallery_name | slugify}}{% endcapture %}
+{% assign gallery = site.data.pictures[year][page.slug][gallery_slug] %}
+{%- if gallery -%}
+<div class="picture-gallery" id="{{ gallery_slug }}">
+	{% if gallery.title %}<h4>{{gallery.title}}</h4>{% endif %}
+	{% for picture in gallery.pictures %}
+		<a href="{{ picture.orig.src }}" id="{{ picture.file_name }}"><img src="{{ picture.thumb.src }}" width="177" height="177"></a>
+	{% endfor %}
 </div>
+{%- else -%}
+	# Gallery Didn't Exist: **{{ include.gallery }}**
+{%- endif -%}
