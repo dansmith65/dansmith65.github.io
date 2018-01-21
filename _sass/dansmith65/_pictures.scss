@@ -7,10 +7,18 @@
 	}
 	a {
 		display: inline-block;
+		padding-left: 4px;
+		padding-right: 4px;
+		padding-bottom: 8px;
+		box-sizing: border-box;
+		width: 185px;
+		@include media-query(400px) {
+			width: 50%;
+		}
 	}
 	img {
+		/*
 		display: inline-block;
-		margin-right: 8px;
-		margin-bottom: 8px;
+		*/
 	}
 }
