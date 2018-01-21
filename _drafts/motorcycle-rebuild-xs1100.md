@@ -2,6 +2,7 @@
 title: Motorcycle Rebuild - 1980 Yamaha XS1100 Special
 tags: [motorcycle, xs1100]
 keywords: [Yamaha, 1980, XS1100SG, XS1100 Special]
+photoswipe: true
 last_modified_at: 2018-01-15T12:07:29-07:00
 ---
 

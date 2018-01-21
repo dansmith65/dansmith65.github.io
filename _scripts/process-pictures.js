@@ -101,7 +101,7 @@ const processPictureSource = function (picture_source, picture_source_lock) {
                 if (! json[gallery_slug]["pictures"]) { json[gallery_slug]["pictures"] = []; }
                 (json[gallery_slug]["pictures"]).push(obj);
 
-                
+                /* this code doesn't work yet, and I'm not sure I need it anymore
                 if (! json_asset[gallery_slug]) { json_asset[gallery_slug] = {}; }
                 json_asset[gallery_slug]["title"] = gallery;
                 if (! json_asset[gallery_slug]["pictures"]) { json_asset[gallery_slug]["pictures"] = []; }
@@ -113,7 +113,7 @@ const processPictureSource = function (picture_source, picture_source_lock) {
                 delete obj.med;
                 delete obj.orig;
                 (json_asset[gallery_slug]["pictures"]).push(obj);
-
+                */
             });
             fs.writeJson(picture_source_lock, json, {spaces:'\t'})
                 .then(() => {
@@ -124,6 +124,7 @@ const processPictureSource = function (picture_source, picture_source_lock) {
                     process.exit(1);
                 });
             
+            /* this code doesn't work yet, and I'm not sure I need it anymore
             fs.writeJson(json_asset_path, json_asset)
                 .then(() => {
                     console.log('created ' + json_asset_path);
@@ -132,6 +133,7 @@ const processPictureSource = function (picture_source, picture_source_lock) {
                     console.error(err);
                     process.exit(1);
                 });
+            */
         });
     });
 };

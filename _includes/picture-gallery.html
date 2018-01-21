@@ -16,9 +16,9 @@ TODO
 {%- if gallery -%}
 <div class="picture-gallery" id="{{ gallery_slug }}">
 	{% if gallery.title %}<h4>{{gallery.title}}</h4>{% endif %}
-	{% for picture in gallery.pictures %}
-		<a href="{{ picture.orig.src }}" id="{{ picture.file_name }}"><img src="{{ picture.thumb.src }}" width="177" height="177"></a>
-	{% endfor %}
+	{%- for picture in gallery.pictures -%}
+		<a href="{{ picture.orig.src }}" id="{{ picture.file_name }}" data-size-med="{{ picture.med.w }}x{{ picture.med.h }}"><img src="{{ picture.thumb.src }}" width="177" height="177"></a>
+	{%- endfor -%}
 </div>
 {%- else -%}
 	# Gallery Didn't Exist: **{{ include.gallery }}**

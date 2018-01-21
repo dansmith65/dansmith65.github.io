@@ -21,8 +21,12 @@
   
   {% if page.comments %}
   {% unless page.comments_locked %}
-  <script async src="{% link /assets/comment.js %}"></script>
+  <script async type="text/javascript" src="{% link /assets/comment.js %}"></script>
   {% endunless %}
+  {% endif %}
+
+  {% if page.photoswipe %}
+  <script defer type="text/javascript" src=/assets/photoswipe/photoswipe.js></script>
   {% endif %}
   
   {% seo %}
