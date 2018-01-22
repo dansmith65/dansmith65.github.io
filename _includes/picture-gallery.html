@@ -15,9 +15,9 @@ TODO
 {% assign gallery = site.data.pictures[year][page.slug][gallery_slug] %}
 {%- if gallery -%}
 <div class="picture-gallery" id="{{ gallery_slug }}">
-	{% if gallery.title %}<h4>{{gallery.title}}</h4>{% endif %}
+	{% if gallery.title > "" %}<h4>{{gallery.title}}</h4>{% endif %}
 	{%- for picture in gallery.pictures -%}
-		<a href="{{ picture.orig.src }}" id="{{ picture.file_name }}" data-size-med="{{ picture.med.w }}x{{ picture.med.h }}"><img src="{{ picture.thumb.src }}" width="185" height="185"></a>
+		<a href="{{ picture.orig.src }}" id="{{ picture.file_name }}" data-index="{{ forloop.index0 }}" data-size-med="{{ picture.med.w }}x{{ picture.med.h }}"><img src="{{ picture.thumb.src }}" width="185" height="185"></a>
 	{%- endfor -%}
 </div>
 {%- else -%}
