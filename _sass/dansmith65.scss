@@ -1,7 +1,6 @@
 // This theme started life as Jekyll's default minima theme
 
 // Define defaults for each variable.
-
 $base-font-family:	"Helvetica Neue", Helvetica, Arial, sans-serif !default;
 $base-font-size:	16px !default;
 $base-font-weight:	400 !default;
@@ -20,11 +19,8 @@ $grey-color-dark:	darken($grey-color, 25%) !default;
 
 // Width of the content area
 $content-width:		800px !default;
-
-$on-palm:			600px !default;
 $on-laptop:			800px !default;
-
-$pswp__background-color: rgba(0,0,0,0.9);
+$on-palm:			600px !default;
 
 // Use media queries like this:
 // @include media-query($on-palm) {
@@ -69,3 +65,10 @@ $pswp__background-color: rgba(0,0,0,0.9);
 	"photoswipe/main",
 	"photoswipe/default-skin/default-skin"
 ;
+
+// minor photoswipe tweaks/additions
+a.pswp__share--open {
+	&:hover {
+		background: #DDD;
+	}
+}

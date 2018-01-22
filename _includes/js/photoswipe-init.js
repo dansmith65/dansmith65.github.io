@@ -1,3 +1,4 @@
+{% raw %}
 var initPhotoSwipeFromDOM = function(gallerySelector) {
 
     // parse slide data (url, title, size ...) from DOM elements 
@@ -23,7 +24,7 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
             // create slide object
             item = {
                 src: src,
-                msrc: src,
+                fsrc: a.getAttribute('href'),
                 w: parseInt(size[0], 10),
                 h: parseInt(size[1], 10),
                 el: img
@@ -49,24 +50,20 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
         e.preventDefault ? e.preventDefault() : e.returnValue = false;
 
         var eTarget = e.target || e.srcElement;
-        
+
         var img = closestChild(eTarget, function(el) {
             return (el.tagName && el.tagName.toUpperCase() === 'IMG');
         });
-        console.log("img",img);
-        
+
         var a = closestParent(eTarget, function(el) {
             return (el.tagName && el.tagName.toUpperCase() === 'A');
         });
-        console.log("a",a);
 
         var gallery = closestParent(eTarget, function(el) {
             return (el.tagName && el.tagName.toUpperCase() === 'DIV');
         });
-        console.log("gallery",gallery);
 
         var pid = a.getAttribute('data-pswp-pid');
-        console.log("pid",pid);
 
         if(pid) {
             // open PhotoSwipe if valid index found
@@ -76,6 +73,7 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
     };
 
     // parse picture index and gallery index from URL (#&pid=1&gid=2)
+    // TODO: verify this section works as-is, I think I should add better parameter validation
     var photoswipeParseHash = function() {
         var hash = window.location.hash.substring(1),
         params = {};
@@ -105,7 +103,7 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
 
     var openPhotoSwipe = function(index, galleryElement, disableAnimation, fromURL) {
         var pswpElement = document.querySelectorAll('.pswp')[0],
-            gallery,
+            pswp,
             options,
             items;
 
@@ -115,14 +113,17 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
         options = {
             history: true,
             galleryPIDs: true,
-
-            // define gallery index (for URL)
             galleryUID: galleryElement.getAttribute('id'),
-
-            tapToClose: true,
-
+            bgOpacity: 0.9,
+            clickToCloseNonZoomable: false,
+			shareButtons: [
+				{id:'download', label:'Download Full-Size', url:'{{raw_image_url}}', download:true},
+				{id:'open', label:'Open Full-Size', url:'{{raw_image_url}}'}
+			],
+			getImageURLForShare: function(shareButtonData) {
+				return items[index].fsrc || '';
+            },
             getThumbBoundsFn: function(index) {
-                // See Options -> getThumbBoundsFn section of documentation for more info
                 var thumbnail = items[index].el,
                     pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
                     rect = thumbnail.getBoundingClientRect(),
@@ -130,24 +131,25 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
                     x, y, w;
 
                 if (ratio > 1) {
-                    // wider than thumbnail
                     w = rect.width * ratio;
                     y = rect.top + pageYScroll;
                     x = rect.left - (w - rect.width) / 2;
+                    // console.log('wider than thumbnail',x,y,w);
                 } else {
                     w = rect.width;
                     y = rect.top + pageYScroll - ((rect.height / ratio) - rect.height) / 2;
                     x = rect.left;
+                    // console.log('narrower than thumbnail',x,y,w);
                 }
 
                 return {x, y, w};
             }
-
         };
 
         // PhotoSwipe opened from URL
         if(fromURL) {
             if(options.galleryPIDs) {
+                // TODO: modify this section
                 // parse real index when custom PIDs are used 
                 // http://photoswipe.com/documentation/faq.html#custom-pid-in-url
                 for(var j = 0; j < items.length; j++) {
@@ -174,8 +176,17 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
         }
 
         // Pass data to PhotoSwipe and initialize it
-        gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
-        gallery.init();
+        pswp = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+        pswp.init();
+
+        // Close when tapping on background
+        pswp.framework.bind( pswp.scrollWrap , 'pswpTap', function(e) {
+            var tapped = e.target.className;
+            console.log(tapped);
+            if (tapped == 'pswp__item' || tapped == 'pswp__zoom-wrap' ) {
+                pswp.close();
+            }
+        });
     };
 
     // loop through all gallery elements and bind events
@@ -199,3 +210,4 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
 
 // execute above function
 initPhotoSwipeFromDOM('.picture-gallery');
+{% endraw %}
