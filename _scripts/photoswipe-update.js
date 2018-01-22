@@ -18,6 +18,11 @@ fs.copy('node_modules/photoswipe/dist/photoswipe-ui-default.min.js', '_includes/
     console.log('photoswipe-ui-default.min.js copied');
 })
 
+fs.copy('node_modules/photoswipe/dist/photoswipe-ui-default.js', '_includes/js/photoswipe-ui-default.js', err => {
+    if (err) return console.error(err);
+    console.log('photoswipe-ui-default.js copied');
+})
+
 fs.pathExists('_sass/photoswipe', (err, exists) => {
     if (err) return console.error(err);
     if (exists) {
