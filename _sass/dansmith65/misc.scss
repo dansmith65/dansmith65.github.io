@@ -1,0 +1,26 @@
+/**
+ * misc.scss
+ * small tidbits that aren't worth creating separate files for
+ * intended to be loaded last, so it can override any other styles, if necessary
+ */
+
+.subtopic_anchor {
+	color: $grey-color-light;
+	padding: 0 0.4em;
+
+	&:visited {
+		color: $grey-color-light;
+	}
+
+	&:hover {
+		color: $brand-color;
+	}
+}
+
+
+// minor photoswipe tweaks/additions
+a.pswp__share--open {
+	&:hover {
+		background: #DDD;
+	}
+}

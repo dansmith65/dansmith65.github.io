@@ -63,12 +63,6 @@ $on-palm:			600px !default;
 	"dansmith65/search",
 	"dansmith65/syntax-highlighting",
 	"photoswipe/main",
-	"photoswipe/default-skin/default-skin"
+	"photoswipe/default-skin/default-skin",
+	"dansmith65/misc"
 ;
-
-// minor photoswipe tweaks/additions
-a.pswp__share--open {
-	&:hover {
-		background: #DDD;
-	}
-}
