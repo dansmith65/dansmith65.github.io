@@ -160,18 +160,20 @@ const createPictures = function (inPath, outDir, gallery) {
     fs.ensureDirSync(outDir);
 
     /* setup input picture */
-    var pipeline = sharp(inPath).rotate().normalise();
+    var pipeline = sharp(inPath).rotate();
 
+    /* not using this at the moment, so I'm disabling it...
     var taken = pipeline.metadata().then(metadata => {
         var exif = exifReader(metadata.exif);
         //console.log('picture taken ts ' + exif.exif.DateTimeOriginal);
         return exif.exif.DateTimeOriginal;
     });
+    include the following line so subsequent code does not need to be modified... */
+    var taken;
 
     var thumb = pipeline.clone()
-        .resize(236, 236)
-        .sharpen()
-        .jpeg({"quality":80,"progressive":true})
+        .resize(177, 177)
+        .jpeg({"quality":85,"progressive":true})
         .toFile(outPathThumb)
         .then(info => {
             var result = {"src": '/' + outPathThumb.replace(/\\/g,'/'), "w": info.width, "h": info.height};
@@ -220,7 +222,7 @@ const createPictures = function (inPath, outDir, gallery) {
             var result = {
                 "gallery": gallery,
                 "file_name": file_name,
-                "taken": data[0],
+            //    "taken": data[0],
                 "thumb": data[1],
                 "med": data[2],
                 "orig": data[3]
