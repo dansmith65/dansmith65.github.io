@@ -115,7 +115,7 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
             clickToCloseNonZoomable: false,
 			shareButtons: shareButtons,
 			getImageURLForShare: function(shareButtonData) {
-				return items[index].fsrc || '';
+				return pswp.currItem.fsrc || '';
             },
             getThumbBoundsFn: function(index) {
                 var thumbnail = items[index].el,
