@@ -40,9 +40,6 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
     var closestParent = function closest(el, fn) {
         return el && ( fn(el) ? el : closest(el.parentNode, fn) );
     };
-    var closestChild = function closest(el, fn) {
-        return el && ( fn(el) ? el : closest(el.childNode, fn) );
-    };
 
     // triggers when user clicks on thumbnail
     var onThumbnailClick = function(e) {
@@ -99,9 +96,16 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
         var pswpElement = document.querySelectorAll('.pswp')[0],
             pswp,
             options,
-            items;
+            items,
+            downloadAttrSupported = ("download" in document.createElement("a")),
+            shareButtons = [];
 
         items = parseThumbnailElements(galleryElement);
+
+        shareButtons.push({id:'open', label:'Open Full-Size', url:'{{raw_image_url}}'});
+        if(downloadAttrSupported) {
+            shareButtons.push({id:'download', label:'Download Full-Size', url:'{{raw_image_url}}', download:true});
+        }
 
         options = {
             history: true,
@@ -109,10 +113,7 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
             galleryUID: galleryElement.getAttribute('id'),
             bgOpacity: 0.9,
             clickToCloseNonZoomable: false,
-			shareButtons: [
-				{id:'download', label:'Download Full-Size', url:'{{raw_image_url}}', download:true},
-				{id:'open', label:'Open Full-Size', url:'{{raw_image_url}}'}
-			],
+			shareButtons: shareButtons,
 			getImageURLForShare: function(shareButtonData) {
 				return items[index].fsrc || '';
             },

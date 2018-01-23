@@ -11,6 +11,7 @@
 		padding-right: 4px;
 		padding-bottom: 8px;
 		box-sizing: border-box;
+		border: 0;
 		@include media-query(400px) {
 			width: 50%;
 			height: auto;
@@ -19,6 +20,5 @@
 	img:hover{
 		filter: alpha(opacity=90);
 		opacity: 0.9;
-		border: 2px solid transparent;
 	}
 }
