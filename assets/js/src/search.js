@@ -62,7 +62,7 @@ var search = new function(){
 
         /* download elasticlunr and it's index */
         var script = document.createElement('script');
-        script.src = "/assets/search-index.js";
+        script.src = "/assets/js/search-index.js";
         script.onload = function(){
             console.timeEnd('elasticlunr-load');
         };

@@ -15,6 +15,7 @@ Relevant npm commands:
 * `npm run build` builds the site and validates tags/years files
 * `npm run env` built-in command that lists environment variables available to the script at runtime
 * refer to "scripts" in [package.json] for additional commands that can be called via `npm run [script]`
+* `npm run serve:dev` and `npm run build:dev` can currently be used to reference source js instead of minified. I can reference the `jekyll.environment` Liquid tag anywhere I want development-specific output.
 
 ## Pictures
 

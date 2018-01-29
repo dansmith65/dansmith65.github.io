@@ -8,17 +8,12 @@ const fs = require('fs-extra');
 
 //npm update -D photoswipe
 
-fs.copy('node_modules/photoswipe/dist/photoswipe.min.js', '_includes/js/photoswipe.min.js', err => {
+fs.copy('node_modules/photoswipe/dist/photoswipe.js', 'assets/js/src/photoswipe/photoswipe.js', err => {
     if (err) return console.error(err);
-    console.log('photoswipe.min.js copied');
+    console.log('photoswipe.js copied');
 })
 
-fs.copy('node_modules/photoswipe/dist/photoswipe-ui-default.min.js', '_includes/js/photoswipe-ui-default.min.js', err => {
-    if (err) return console.error(err);
-    console.log('photoswipe-ui-default.min.js copied');
-})
-
-fs.copy('node_modules/photoswipe/dist/photoswipe-ui-default.js', '_includes/js/photoswipe-ui-default.js', err => {
+fs.copy('node_modules/photoswipe/dist/photoswipe-ui-default.js', 'assets/js/src/photoswipe/photoswipe-ui-default.js', err => {
     if (err) return console.error(err);
     console.log('photoswipe-ui-default.js copied');
 })

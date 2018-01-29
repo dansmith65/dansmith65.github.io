@@ -16,20 +16,36 @@
   {% endif %}
 
   {% if page.url contains '/blog/' %}
-  <script async type="text/javascript" src="{% link /assets/search.js %}"></script>
+    {% if jekyll.environment =="dev" %}
+      <script async type="text/javascript" src="{% link /assets/js/src/search.js %}"></script>
+    {% else %}
+    <script async type="text/javascript" src="{% link /assets/js/search.min.js %}"></script>
+    {% endif %}
   {% endif %}
   
-  {% if page.comments %}
-  {% unless page.comments_locked %}
-  <script async type="text/javascript" src="{% link /assets/comment.js %}"></script>
-  {% endunless %}
-  {% endif %}
+  {% if page.comments %}{% unless page.comments_locked %}
+    {% if jekyll.environment =="dev" %}
+      <script async type="text/javascript" src="{% link /assets/js/src/comment.js %}"></script>
+    {% else %}
+      <script async type="text/javascript" src="{% link /assets/js/comment.min.js %}"></script>
+    {% endif %}
+  {% endunless %}{% endif %}
 
   {% if page.photoswipe %}
-  <script defer type="text/javascript" src=/assets/photoswipe/photoswipe.js></script>
+    {% if jekyll.environment =="dev" %}
+      <script defer type="text/javascript" src="{% link /assets/js/src/photoswipe/photoswipe.js %}"></script>
+      <script defer type="text/javascript" src="{% link /assets/js/src/photoswipe/photoswipe-ui-default.js %}"></script>
+      <script defer type="text/javascript" src="{% link /assets/js/src/photoswipe-init.js %}"></script>
+    {% else %}
+      <script defer type="text/javascript" src="{% link /assets/js/photoswipe.min.js %}"></script>
+    {% endif %}
   {% endif %}
 
-  <script defer type="text/javascript" src=/assets/subtopic_anchor.js></script>
+  {% if jekyll.environment =="dev" %}
+    <script defer type="text/javascript" src="{% link /assets/js/src/subtopic_anchor.js %}"></script>
+  {% else %}
+    <script defer type="text/javascript" src="{% link /assets/js/main.defer.min.js %}"></script>
+  {% endif %}
   
   {% seo %}
   

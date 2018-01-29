@@ -10,17 +10,23 @@
   },
   "scripts": {
     "test": "exit 1",
-    "start": "start bundle exec jekyll serve --drafts --future --incremental --host=0.0.0.0",
-    "poststart": "start http://localhost:4000",
-    "serve": "npm start",
-    "server": "npm start",
+    "start": "npm run serve",
+    "serve": "start bundle exec jekyll serve --drafts --future --incremental",
+    "postserve": "start http://localhost:4000",
+    "serve:dev": "env JEKYLL_ENV=dev npm run serve",
     "build": "bundle exec jekyll build --drafts",
-    "postbuild": "npm run process-pictures && npm run validate-tags-years",
-    "clean": "rm -rf _site && rm -rf _data/pictures/*/*.json",
+    "build:dev": "env JEKYLL_ENV=dev npm run build",
+    "postbuild": "npm run process-pictures && npm run validate-tags-years && npm run uglify",
+    "clean": "bundle exec jekyll clean && rm -rf _data/pictures/*/*.json",
     "//": "------tasks below this line are sub-tasks to those above------",
     "process-pictures": "node _scripts/process-pictures.js",
     "validate-tags-years": "node _scripts/validate-tags-years.js",
-    "photoswipe-update": "node _scripts/photoswipe-update"
+    "photoswipe-update": "node _scripts/photoswipe-update",
+    "uglify": "npm run uglify:main-defer && npm run uglify:photoswipe && npm run uglify:comment && npm run uglify:search",
+    "uglify:main-defer": "uglifyjs assets/js/src/subtopic_anchor.js -o assets/js/main.defer.min.js -m -c --source-map \"root='/',url='main.defer.min.js.map'\"",
+    "uglify:photoswipe": "uglifyjs assets/js/src/photoswipe/photoswipe.js assets/js/src/photoswipe/photoswipe-ui-default.js assets/js/src/photoswipe-init.js -o assets/js/photoswipe.min.js -m -c --comments \"/^!/i\" --source-map \"root='/',url='photoswipe.min.js.map'\"",
+    "uglify:comment": "uglifyjs assets/js/src/comment.js -o assets/js/comment.min.js -m -c --source-map \"root='/',url='comments.min.js.map'\"",
+    "uglify:search": "uglifyjs assets/js/src/search.js -o assets/js/search.min.js -m -c --source-map \"root='/',url='search.min.js.map'\""
   },
   "devDependencies": {
     "exif-reader": "^1.0.2",
@@ -30,6 +36,7 @@
     "photoswipe": "^4.1.2",
     "run-parallel": "^1.1.6",
     "sharp": "^0.19.0",
-    "slug": "^0.9.1"
+    "slug": "^0.9.1",
+    "uglify-es": "^3.3.9"
   }
 }
