@@ -21,17 +21,17 @@ fs.copy('../../PhotoSwipe/src/css', '_sass/photoswipe', err => {
     console.log('scss copied');
 })
 
-fs.copy('_sass/photoswipe/default-skin/preloader.gif', 'assets/photoswipe/preloader.gif', err => {
+fs.copy('_sass/photoswipe/default-skin/preloader.gif', 'assets/images/photoswipe/preloader.gif', err => {
     if (err) return console.error(err);
     console.log('preloader.gif copied');
 })
 
-fs.copy('_sass/photoswipe/default-skin/default-skin.png', 'assets/photoswipe/default-skin.png', err => {
+fs.copy('_sass/photoswipe/default-skin/default-skin.png', 'assets/images/photoswipe/default-skin.png', err => {
     if (err) return console.error(err);
     console.log('default-skin.png copied');
 })
 
-fs.copy('_sass/photoswipe/default-skin/default-skin.svg', 'assets/photoswipe/default-skin.svg', err => {
+fs.copy('_sass/photoswipe/default-skin/default-skin.svg', 'assets/images/photoswipe/default-skin.svg', err => {
     if (err) return console.error(err);
     console.log('default-skin.svg copied');
 })
