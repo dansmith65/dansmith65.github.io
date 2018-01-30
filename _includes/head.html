@@ -39,6 +39,7 @@
     {% else %}
       <script defer type="text/javascript" src="{% link /assets/js/photoswipe.min.js %}"></script>
     {% endif %}
+    <link rel="stylesheet" href="{{ "/assets/css/photoswipe.css" | relative_url }}">
   {% endif %}
 
   {% if jekyll.environment =="dev" %}

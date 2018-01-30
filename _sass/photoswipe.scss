@@ -1,0 +1,14 @@
+$pswp__assets-path: '/assets/images/photoswipe/';
+
+@import
+	"dansmith65/functions",
+	"dansmith65/pictures",
+	"photoswipe/main",
+	"photoswipe/default-skin/default-skin"
+;
+
+a.pswp__share--open {
+	&:hover {
+		background: #DDD;
+	}
+}
