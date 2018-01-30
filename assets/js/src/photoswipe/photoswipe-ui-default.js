@@ -196,30 +196,6 @@ var PhotoSwipeUI_Default =
 			return false;
 		},
 
-		_openWindowPopup = function(e) {
-			e = e || window.event;
-			var target = e.target || e.srcElement;
-
-			pswp.shout('shareLinkClick', e, target);
-
-			if(!target.href) {
-				return false;
-			}
-
-			if( target.hasAttribute('download') ) {
-				return true;
-			}
-
-			window.open(target.href, 'pswp_share', 'scrollbars=yes,resizable=yes,toolbar=no,'+
-										'location=yes,width=550,height=420,top=100,left=' + 
-										(window.screen ? Math.round(screen.width / 2 - 275) : 100)  );
-
-			if(!_shareModalHidden) {
-				_toggleShareModal();
-			}
-			
-			return false;
-		},
 		_updateShareURLs = function() {
 			var shareButtonOut = '',
 				shareButtonData,
@@ -250,7 +226,6 @@ var PhotoSwipeUI_Default =
 				}
 			}
 			_shareModal.children[0].innerHTML = shareButtonOut;
-			_shareModal.children[0].onclick = _openWindowPopup;
 
 		},
 		_hasCloseClass = function(target) {
