@@ -122,18 +122,23 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
 				var thumbnail = items[index].el,
 					pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
 					rect = thumbnail.getBoundingClientRect(),
+					/* adjust rect values to to match my css */
+					thumbTop = rect.top,
+					thumbLeft = rect.left + 4,
+					thumbWidth = rect.width - 8,
+					thumbHeight = rect.height - 8,
 					ratio = items[index].w/items[index].h,
 					x, y, w;
 
 				if (ratio > 1) {
-					w = rect.width * ratio;
-					y = rect.top + pageYScroll;
-					x = rect.left - (w - rect.width) / 2;
+					w = thumbWidth * ratio;
+					y = thumbTop + pageYScroll;
+					x = thumbLeft - (w - thumbWidth) / 2;
 					// console.log('wider than thumbnail',x,y,w);
 				} else {
-					w = rect.width;
-					y = rect.top + pageYScroll - ((rect.height / ratio) - rect.height) / 2;
-					x = rect.left;
+					w = thumbWidth;
+					y = thumbTop + pageYScroll - ((thumbHeight / ratio) - thumbHeight) / 2;
+					x = thumbLeft;
 					// console.log('narrower than thumbnail',x,y,w);
 				}
 
