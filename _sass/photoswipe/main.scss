@@ -48,6 +48,11 @@
 
 .pswp--open {
 	display: block;
+	visibility: hidden;
+}
+
+.pswp--visible {
+	visibility: visible;
 }
 
 .pswp--zoom-allowed .pswp__img {
