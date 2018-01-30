@@ -11,11 +11,11 @@
   "scripts": {
     "test": "exit 1",
     "start": "npm run serve",
-    "serve": "start bundle exec jekyll serve --drafts --future --incremental",
+    "serve": "start bundle exec jekyll serve --drafts --future --incremental --host=0.0.0.0",
     "postserve": "start http://localhost:4000",
     "serve:dev": "env JEKYLL_ENV=dev npm run serve",
     "build": "bundle exec jekyll build --drafts",
-    "build:dev": "env JEKYLL_ENV=dev npm run build",
+    "build:dev": "env JEKYLL_ENV=dev bundle exec jekyll build --drafts",
     "postbuild": "npm run process-pictures && npm run validate-tags-years && npm run uglify",
     "clean": "bundle exec jekyll clean && rm -rf _data/pictures/*/*.json",
     "//": "------tasks below this line are sub-tasks to those above------",
