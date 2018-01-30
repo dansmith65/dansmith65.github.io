@@ -1,33 +1,24 @@
 /**
- * Copy files from node_modules to project files.
+ * Copy files from a GitRepo in another directory to project files.
  * 
  * @AUTHOR Daniel Smith dan@dansmith65.com
  */
 
 const fs = require('fs-extra');
 
-//npm update -D photoswipe
-
-fs.copy('node_modules/photoswipe/dist/photoswipe.js', 'assets/js/src/photoswipe/photoswipe.js', err => {
+fs.copy('../../PhotoSwipe/dist/photoswipe.js', 'assets/js/src/photoswipe/photoswipe.js', err => {
     if (err) return console.error(err);
     console.log('photoswipe.js copied');
 })
 
-fs.copy('node_modules/photoswipe/dist/photoswipe-ui-default.js', 'assets/js/src/photoswipe/photoswipe-ui-default.js', err => {
+fs.copy('../../PhotoSwipe/dist/photoswipe-ui-default.js', 'assets/js/src/photoswipe/photoswipe-ui-default.js', err => {
     if (err) return console.error(err);
     console.log('photoswipe-ui-default.js copied');
 })
 
-fs.pathExists('_sass/photoswipe', (err, exists) => {
+fs.copy('../../PhotoSwipe/src/css', '_sass/photoswipe', err => {
     if (err) return console.error(err);
-    if (exists) {
-        console.log("scss already existed, so it wasn't touched");
-    } else {
-        fs.copy('node_modules/photoswipe/src/css', '_sass/photoswipe', err => {
-            if (err) return console.error(err);
-            console.log('scss copied');
-        })
-    }
+    console.log('scss copied');
 })
 
 fs.copy('_sass/photoswipe/default-skin/preloader.gif', 'assets/photoswipe/preloader.gif', err => {
