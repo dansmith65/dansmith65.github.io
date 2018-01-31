@@ -113,6 +113,7 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
 			galleryPIDs: true,
 			galleryUID: galleryElement.getAttribute('id'),
 			bgOpacity: 0.9,
+			showHideOpacity: true,
 			clickToCloseNonZoomable: false,
 			shareButtons: shareButtons,
 			getImageURLForShare: function(shareButtonData) {
