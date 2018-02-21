@@ -36,8 +36,9 @@ I took carb #4 off first so I wouldn't have to mess with the choke lever.
 | Description           | Size
 |:----------------------|:-----------
 | valve seat            | Mikuni 2.0
-| main nozzle/screw     | Mikuni 300 X-2
+| float valve           | rubber-tipped, no markings, assumed to be aftermarket
+| needle jet            | Mikuni 300 X-2
 | pilot jet             | Mikuni 45
 | air pilot jet         | Mikuni 185
 | main jet              | Mikuni 110
-| needle                | 5GLZ18 (clip in middle, out of 5)
+| needle                | Mikuni 5GLZ18 (clip in middle, out of 5)
