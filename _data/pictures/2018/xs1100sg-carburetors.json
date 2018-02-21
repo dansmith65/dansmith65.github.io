@@ -605,6 +605,42 @@
 					"w": 1152,
 					"h": 2048
 				}
+			},
+			{
+				"file_name": "IMG_20180220_220023.jpg",
+				"thumb": {
+					"src": "/assets/pictures/2018/xs1100sg-carburetors/IMG_20180220_220023-thumb.jpg",
+					"w": 177,
+					"h": 177
+				},
+				"med": {
+					"src": "/assets/pictures/2018/xs1100sg-carburetors/IMG_20180220_220023-med.jpg",
+					"w": 675,
+					"h": 1200
+				},
+				"orig": {
+					"src": "/assets/pictures/2018/xs1100sg-carburetors/IMG_20180220_220023.jpg",
+					"w": 1152,
+					"h": 2048
+				}
+			},
+			{
+				"file_name": "IMG_20180220_225923.jpg",
+				"thumb": {
+					"src": "/assets/pictures/2018/xs1100sg-carburetors/IMG_20180220_225923-thumb.jpg",
+					"w": 177,
+					"h": 177
+				},
+				"med": {
+					"src": "/assets/pictures/2018/xs1100sg-carburetors/IMG_20180220_225923-med.jpg",
+					"w": 1200,
+					"h": 675
+				},
+				"orig": {
+					"src": "/assets/pictures/2018/xs1100sg-carburetors/IMG_20180220_225923.jpg",
+					"w": 2048,
+					"h": 1152
+				}
 			}
 		]
 	}
