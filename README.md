@@ -10,12 +10,24 @@ That method was sufficient for starting out, but then I added [validate-tags.txt
 
 Relevant npm commands:
 
-* `npm install` to install dependencies
+* `npm install` to install dependencies (also seems to update dependencies)
 * `npm start` alias to `npm run start`, builds/serves/watches for changes
 * `npm run build` builds the site and validates tags/years files
 * `npm run env` built-in command that lists environment variables available to the script at runtime
 * refer to "scripts" in [package.json] for additional commands that can be called via `npm run [script]`
 * `npm run serve:dev` and `npm run build:dev` can currently be used to reference source js instead of minified. I can reference the `jekyll.environment` Liquid tag anywhere I want development-specific output.
+
+Updating dependencies:
+
+* `bundle update github-pages`
+  * info on managing local github-pages install: https://github.com/github/pages-gem
+* `bundle install`
+  * this might be redundant after running above command; not sure!
+  * If this fails, make sure RubyDevKit is in the path. If not, can run `C:\tools\RubyDevKit\devkitvars.bat` to add it to path
+* `npm install -g npm` to update npm itself
+* `npm install`
+  * I _think_ this updated stuff
+
 
 ## Pictures
 
