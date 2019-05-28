@@ -39,3 +39,11 @@ The process-pictures script will create a json file that is used by the include 
 [validate-years.txt]: ../df25000a19cb4fe79979c519332969fc4be9ac5a/validate-years.txt
 [package.json]: ./package.json
 [npm-scripts]: https://docs.npmjs.com/misc/scripts
+
+
+## Jekyll Front Matter
+
+variable | description
+-------- | -----------
+`comments_locked` | `true` or `false`, default = `false`, Set to `true` to prevent additional comments. [explanation](https://mademistakes.com/articles/jekyll-static-comments/#Spam%20slipping%20through)
+`last_modified_at` | add when modifying a post, timestamp in format: 2017-03-25T12:38:13-07:00 (use dt2` phrase)
