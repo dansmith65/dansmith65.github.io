@@ -19,14 +19,23 @@ Relevant npm commands:
 
 Updating dependencies:
 
-* `bundle update github-pages`
+* use https://github.com/ccmywish/rbenv-for-windows to manage Ruby versions
+  * `rbenv update`
+  * `rbenv install VERSION`
+    * if rbenv doesn't include a new version of ruby; add it to rbenv\share\versions.txt, then it can be installed
+  * `rbenv local VERSION`
+* `bundle update --bundler` to update the version required in Gemfile.lock
+* `bundle update`
   * info on managing local github-pages install: https://github.com/github/pages-gem
-* `bundle install`
-  * this might be redundant after running above command; not sure!
-  * If this fails, make sure RubyDevKit is in the path. If not, can run `C:\tools\RubyDevKit\devkitvars.bat` to add it to path
-* `npm install -g npm` to update npm itself
-* `npm install`
-  * I _think_ this updated stuff
+* might also need to run `gem update`, or something similar:
+  * `gem update bundler`
+  * `gem update --system`
+* `npm outdated` to see if packages can/should be updated
+* `npm update` to update all
+
+If I have compatibility issues with old versions of code supported by Github Pages, consider https://github.com/BryanSchuetz/jekyll-deploy-gh-pages
+
+https://github.com/Starefossen/docker-github-pages/issues/74
 
 
 ## Pictures
